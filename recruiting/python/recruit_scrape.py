@@ -41,8 +41,11 @@ for season in range(2000,2019):
                             origin = recruit.contents[6].contents[1].contents[3].text.strip()
                             paren = origin.count('(')
                             school = origin.split(' (')[0]
-                            city = origin.split(' (')[paren].split(', ')[0]
-                            state = origin.split(' (')[paren].split(', ')[1][:-1]
+                            try:
+                                city = origin.split(' (')[paren].split(', ')[0]
+                                state = origin.split(' (')[paren].split(', ')[1][:-1]
+                            except:
+                                city,state = None,None
                             pos = recruit.contents[6].contents[3].contents[1].text
                             ht = recruit.contents[6].contents[3].contents[3].text
                             wt = recruit.contents[6].contents[3].contents[5].text
