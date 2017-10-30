@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Apr 21 20:00:18 2017
-
-@author: wessonmo
-"""
-
 import csv
 from bs4 import BeautifulSoup
 from selenium import webdriver
