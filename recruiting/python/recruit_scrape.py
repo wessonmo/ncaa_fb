@@ -38,7 +38,7 @@ for season in range(2000,2019):
                             name = re.sub(r'[^\x00-\x7F]+','',recruit.contents[6].contents[1].contents[1].text)
                             rk = recruit.contents[1].contents[1].text.strip()
                             href = recruit.contents[6].contents[1].contents[1].get('href')
-                            origin = recruit.contents[6].contents[1].contents[3].text.strip()
+                            origin = re.sub(r'[^\x00-\x7F]+','',recruit.contents[6].contents[1].contents[3].text.strip())
                             paren = origin.count('(')
                             school = origin.split(' (')[0]
                             try:
