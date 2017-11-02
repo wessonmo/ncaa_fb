@@ -1,4 +1,3 @@
-import csv
 import pandas as pd
 from bs4 import BeautifulSoup
 import requests
@@ -12,10 +11,7 @@ try:
 except:
     headers = ['season','instgroup','page','rk','name','href','school','city','state','pos','ht','wt','rate','stars','rct_srvs','college',
                'college_href']
-    with open('csv\\recruits.csv', 'ab') as recruitcsv:
-            recruitwriter = csv.writer(recruitcsv, delimiter = ',', quotechar = '"', quoting = csv.QUOTE_MINIMAL)
-            recruitwriter.writerow(headers)
-    scraped = pd.read_csv('csv\\recruits.csv', header = 0)
+    scraped = pd.DataFrame(columns = headers)
        
 for season in range(2000,2019):
     for instgroup in ['HighSchool','JuniorCollege','PrepSchool']:
@@ -35,6 +31,11 @@ for season in range(2000,2019):
                         elif recruit.contents[1].get('data-js') == 'showmore':
                             continue
                         elif recruit.contents[1].get('class')[0] != 'dfp_ad':
+                            try:
+                                college = recruit.contents[8].contents[1].contents[0].get('title')
+                                college_href = recruit.contents[8].contents[1].get('href')
+                            except:
+                                continue
                             name = re.sub(r'[^\x00-\x7F]+','',recruit.contents[6].contents[1].contents[1].text)
                             rk = recruit.contents[1].contents[1].text.strip()
                             href = recruit.contents[6].contents[1].contents[1].get('href')
@@ -52,14 +53,8 @@ for season in range(2000,2019):
                             rate = recruit.contents[6].contents[5].contents[7].text
                             stars = len(recruit.contents[6].contents[5].find_all('span', {'class': 'icon-starsolid yellow'}))
                             rct_srvs = len(recruit.contents[6].contents[5].contents[9].find_all('span', {'class': 'yellow'}))
-                            try:
-                                college = recruit.contents[8].contents[1].contents[0].get('title')
-                                college_href = recruit.contents[8].contents[1].get('href')
-                            except:
-                                college = None
-                                college_href = None
                             
-                            with open('csv\\recruits.csv', 'ab') as recruitcsv:
-                                recruitwriter = csv.writer(recruitcsv, delimiter = ',', quotechar = '"', quoting = csv.QUOTE_MINIMAL)
-                                recruitwriter.writerow([season,instgroup,page,rk,name,href,school,city,state,pos,ht,wt,rate,stars,rct_srvs,
-                                                        college,college_href])
+                        scraped.loc[len(scraped),] = [season,instgroup,page,rk,name,href,school,city,state,pos,ht,wt,rate,stars,rct_srvs,
+                                                        college,college_href]
+                            
+scraped.drop_duplicates().to_csv('csv\\recruits.csv', index = False)
