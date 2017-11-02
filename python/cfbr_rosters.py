@@ -50,14 +50,12 @@ except:
                 except:
                     continue
                 for player in players:
-                    if len(player.contents[0].contents) == 1:
-                        name = player.contents[0].text.split('*')[0]
-                        starter = 1 if player.contents[0].text[-1] == '*' else 0
-                        href = None
-                    else:
-                        name = player.contents[0].contents[0].text
-                        starter = 1 if len(player.contents[0].contents) > 0 else 0
+                    name = player.contents[0].text[:-1] if player.contents[0].text[-1] == '*' else player.contents[0].text
+                    starter = 1 if player.contents[0].text[-1] == '*' else 0
+                    try:
                         href = player.contents[0].contents[0].get('href')
+                    except:
+                        href = None
                     class_ = None if player.contents[1].text == '' else player.contents[1].text
                     pos = None if player.contents[2].text == '' else player.contents[2].text
         
