@@ -1,220 +1,252 @@
-id_espn,id_cfbr,id_247
-2005,0,0
-2006,1,1
-333,2,2
-2010,,3
-2011,,4
-399,,5
-2016,,6
-2026,3,7
-12,4,8
-9,5,9
-8,6,10
-2032,7,11
-349,8,12
-2,9,13
-2046,,14
-2050,10,15
-239,11,16
-2065,,17
-68,12,18
-103,13,19
-189,14,20
-252,15,21
-2084,16,24
-13,,25
-25,17,26
-2097,,27
-2110,,28
-2117,18,30
-2127,,31
-2429,19,32
-236,,33
-2132,20,34
-2643,,35
-228,21,36
-324,22,37
-2142,,38
-38,23,39
-36,24,40
-41,25,42
-48,,46
-2169,,47
-150,26,49
-2184,,50
-151,27,51
-2197,,53
-2198,,54
-2199,28,55
-331,,56
-2210,,57
-2229,31,58
-57,29,59
-50,,60
-2226,30,61
-52,32,62
-2230,,63
-278,33,64
-231,,65
-2241,,66
-61,34,68
-290,35,69
-2247,36,70
-59,37,71
-2755,,72
-2261,,73
-62,38,75
-248,39,77
-47,,79
-70,40,80
-304,,81
-356,41,82
-2287,,83
-84,42,84
-282,,85
-2294,43,86
-66,44,87
-2296,,88
-55,,90
-256,,91
-2305,45,92
-2306,46,93
-2309,47,95
-96,48,96
-99,53,97
-2320,,99
-2335,,101
-2348,49,102
-309,50,103
-2433,51,104
-97,52,105
-311,,106
-276,54,108
-120,55,109
-113,56,110
-2377,,111
-235,57,112
-2390,58,114
-193,59,115
-130,60,116
-127,61,117
-2393,62,118
-135,63,119
-344,64,120
-2400,,121
-142,65,122
-2623,,123
-2405,,124
-149,,125
-147,,126
-2415,,128
-93,,129
-152,73,130
-2426,66,131
-158,67,132
-2440,68,133
-160,,134
-167,70,135
-166,71,136
-2447,,137
-2450,,138
-153,72,139
-2448,,140
-2428,,141
-155,,142
-2449,,143
-249,74,144
-2464,,145
-2458,,146
-2459,75,147
-2460,,148
-77,76,149
-2466,,150
-87,77,151
-195,78,153
-194,79,154
-201,80,155
-197,81,156
-295,82,157
-145,83,158
-2483,84,159
-204,85,160
-213,86,161
-221,87,163
-2502,,164
-2504,,165
-2506,,166
-2509,88,168
-227,,169
-242,89,170
-257,,171
-164,90,173
-2567,93,174
-16,,175
-2534,,177
-2535,,178
-301,,179
-21,91,180
-23,92,181
-2542,,182
-6,94,185
-2579,95,186
-2569,,187
-233,,188
-2571,,189
-2546,,190
-2545,,191
-79,,192
-2572,97,193
-2582,,194
-253,,195
-24,98,197
-2617,,198
-2619,,200
-183,99,201
-2628,104,202
-218,100,203
-2633,101,204
-2635,,206
-2630,,207
-251,102,208
-245,103,209
-2640,,210
-326,105,211
-2641,106,212
-2636,118,213
-2649,107,214
-119,,215
-2653,108,216
-2655,109,217
-202,110,218
-5,111,219
-302,,220
-2116,112,221
-26,113,222
-2439,69,223
-30,114,224
-58,96,225
-2638,117,226
-254,115,227
-328,116,228
-238,119,230
-222,,231
-258,120,232
-2678,,233
-259,121,234
-2681,,235
-154,122,236
-264,123,237
-265,124,238
-2692,,239
-277,125,240
-2717,,241
-2710,,242
-98,126,243
-2711,127,244
-2729,,245
-275,128,246
-2747,,247
-2751,129,248
-2754,,250
+name_247,name_cfbr,id_espn
+Air Force,Air Force,2005
+Akron,Akron,2006
+Alabama,Alabama,2011
+Alabama A&M,,2010
+Alabama State,,2011
+Albany,,399
+Alcorn State,,2011
+Appalachian State,Appalachian State,2011
+Arizona,Arizona,12
+Arizona State,Arizona State,12
+Arkansas,Arkansas,8
+Arkansas State,Arkansas State,2032
+Army,Army,349
+Auburn,Auburn,142
+Austin Peay,,2046
+Ball State,Ball State,2011
+Baylor,Baylor,239
+Bethune-Cookman,,2065
+Boise State,Boise State,2449
+Boston College,Boston College,103
+Bowling Green,Bowling Green State,189
+Brigham Young,Brigham Young,252
+Brown,,204
+Bucknell,,
+Buffalo,Buffalo,2084
+Cal Poly,,13
+California,California,25
+Campbell,,2097
+Central Arkansas,,2110
+Central Connecticut State,,
+Central Michigan,Central Michigan,2117
+Charleston Southern,,204
+Charlotte,Charlotte,2429
+Chattanooga,,236
+Cincinnati,Cincinnati,2132
+Citadel,,344
+Clemson,Clemson,142
+Coastal Carolina,Coastal Carolina,324
+Colgate,,2142
+Colorado,Colorado,38
+Colorado State,Colorado State,36
+Columbia,,
+Connecticut,Connecticut,41
+Cornell,,
+Dartmouth,,
+Dayton,,
+Delaware,,48
+Delaware State,,2011
+Drake,,344
+Duke,Duke,150
+Duquesne,,2184
+East Carolina,East Carolina,151
+East Tennessee State,,
+Eastern Illinois,,2197
+Eastern Kentucky,,2198
+Eastern Michigan,Eastern Michigan,2199
+Eastern Washington,,331
+Elon,,2210
+FIU,Florida International,2229
+Florida,Florida,57
+Florida A&M,,50
+Florida Atlantic,Florida Atlantic,2226
+Florida State,Florida State,52
+Fordham,,2230
+Fresno State,Fresno State,344
+Furman,,231
+Gardner-Webb,,2241
+Georgetown,,
+Georgia,Georgia,61
+Georgia Southern,Georgia Southern,2415
+Georgia State,Georgia State,2415
+Georgia Tech,Georgia Tech,59
+Grambling State,,2755
+Hampton,,2261
+Harvard,,
+Hawaii,Hawaii,62
+Holy Cross,,
+Houston,Houston,248
+Houston Baptist,,2534
+Howard,,47
+Idaho,Idaho,70
+Idaho State,,304
+Illinois,Illinois,356
+Illinois State,,79
+Indiana,Indiana,84
+Indiana State,,282
+Iowa,Iowa,194
+Iowa State,Iowa State,194
+Jackson State,,2296
+Jacksonville,,
+Jacksonville State,,55
+James Madison,,256
+Kansas,Kansas,2305
+Kansas State,Kansas State,12
+Kennesaw State,,304
+Kent State,Kent State,204
+Kentucky,Kentucky,12
+LSU,LSU,142
+Lafayette,,
+Lamar,,2320
+Lehigh,,
+Liberty,,2335
+Louisiana Tech,Louisiana Tech,344
+Louisiana-Lafayette,Louisiana-Lafayette,309
+Louisiana-Monroe,Louisiana-Monroe,2433
+Louisville,Louisville,97
+Maine,,2415
+Marist,,
+Marshall,Marshall,276
+Maryland,Maryland,120
+Massachusetts,Massachusetts,113
+McNeese State,,2415
+Memphis,Memphis,142
+Mercer,,
+Miami,Miami (FL),2390
+Miami (OH),Miami (OH),193
+Michigan,Michigan,130
+Michigan State,Michigan State,127
+Middle Tennessee State,Middle Tennessee State,2393
+Minnesota,Minnesota,135
+Mississippi State,Mississippi State,344
+Mississippi Valley State,,344
+Missouri,Missouri,142
+Missouri State,,2415
+Monmouth,,2405
+Montana,,149
+Montana State,,2415
+Morehead State,,2415
+Morgan State,,2415
+Murray State,,93
+N.C. State,North Carolina State,152
+Navy,Navy,2426
+Nebraska,Nebraska,111
+Nevada,Nevada,2440
+New Hampshire,,12
+New Mexico,New Mexico,167
+New Mexico State,New Mexico State,204
+Nicholls State,,304
+Norfolk State,,2450
+North Carolina,North Carolina,153
+North Carolina A&T,,2448
+North Carolina Central,,2428
+North Dakota,,2449
+North Dakota State,,2449
+North Texas,North Texas,249
+Northern Arizona,,2464
+Northern Colorado,,2415
+Northern Illinois,Northern Illinois,111
+Northern Iowa,,2197
+Northwestern,Northwestern,77
+Northwestern State,,77
+Notre Dame,Notre Dame,87
+Oakland,,
+Ohio,Ohio,195
+Ohio State,Ohio State,194
+Oklahoma,Oklahoma,201
+Oklahoma State,Oklahoma State,194
+Old Dominion,Old Dominion,295
+Ole Miss,Ole Miss,145
+Oregon,Oregon,2483
+Oregon State,Oregon State,204
+Penn State,Penn State,213
+Pennsylvania,,
+Pittsburgh,Pitt,221
+Portland State,,2502
+Prairie View A&M,,2504
+Presbyterian,,2506
+Princeton,,
+Purdue,Purdue,2509
+Rhode Island,,227
+Rice,Rice,242
+Richmond,,257
+Robert Morris,,
+Rutgers,Rutgers,164
+SMU,SMU,2567
+Sacramento State,,2011
+Sacred Heart,,
+Sam Houston State,,2534
+Samford,,2535
+San Diego,,301
+San Diego State,San Diego State,204
+San Jose State,San Jose State,23
+Savannah State,,2542
+Seton Hall,,
+Siena,,
+South Alabama,South Alabama,2011
+South Carolina,South Carolina,2579
+South Carolina State,,344
+South Dakota,,233
+South Dakota State,,2449
+Southeast Missouri State,,2546
+Southeastern Louisiana,,79
+Southern Illinois,,79
+Southern Miss,Southern Mississippi,79
+Southern University,,2582
+Southern Utah,,253
+St. Francis (PA),,
+Stanford,Stanford,24
+Stephen F. Austin,,2617
+Stetson,,
+Stony Brook,,2619
+Syracuse,Syracuse,183
+TCU,Texas Christian,2628
+Temple,Temple,218
+Tennessee,Tennessee,2633
+Tennessee State,,
+Tennessee Tech,,2635
+Tennessee-Martin,,2630
+Texas,Texas,251
+Texas A&M,Texas A&M,245
+Texas Southern,,142
+Texas State,Texas State,326
+Texas Tech,Texas Tech,245
+Texas-San Antonio,UTSA,2636
+Toledo,Toledo,2649
+Towson,,119
+Troy,Troy,2653
+Tulane,Tulane,2655
+Tulsa,Tulsa,202
+UAB,UAB,5
+UC Davis,,245
+UCF,UCF,2116
+UCLA,UCLA,26
+UNLV,Nevada-Las Vegas,2439
+USC,USC,30
+USF,South Florida,79
+UTEP,UTEP,2638
+Utah,Utah,254
+Utah State,Utah State,245
+Valparaiso,,
+Vanderbilt,Vanderbilt,238
+Villanova,,12
+Virginia,Virginia,258
+Virginia Military Institute,,2678
+Virginia Tech,Virginia Tech,259
+Wagner,,2681
+Wake Forest,Wake Forest,2415
+Washington,Washington,111
+Washington State,Washington State,265
+Weber State,,77
+West Virginia,West Virginia,277
+Western Carolina,,2717
+Western Illinois,,2197
+Western Kentucky,Western Kentucky,98
+Western Michigan,Western Michigan,2415
+William & Mary,,2729
+Wisconsin,Wisconsin,275
+Wofford,,2747
+Wyoming,Wyoming,2751
+Yale,,344
+Youngstown State,,2754
