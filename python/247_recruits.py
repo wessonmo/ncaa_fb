@@ -7,9 +7,9 @@ header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/5
     Safari/537.36'}
     
 try:
-    scraped = pd.read_csv('csv\\recruits.csv', header = 0)
+    scraped = pd.read_csv('csv\\recruits.csv', header = 0).reset_index(drop = True)
 except:
-    headers = ['season','instgroup','page','rk','name','href','school','city','state','pos','ht','wt','rate','stars','rct_srvs','college',
+    headers = ['season','instgroup','page','name','href','school','city','state','pos','ht','wt','rate','stars','rct_srvs','college',
                'college_href']
     scraped = pd.DataFrame(columns = headers)
        
@@ -31,13 +31,14 @@ for season in range(2000,2019):
                         elif recruit.contents[1].get('data-js') == 'showmore':
                             continue
                         elif recruit.contents[1].get('class')[0] != 'dfp_ad':
+                            name = re.sub(r'[^\x00-\x7F]+','',recruit.contents[6].contents[1].contents[1].text)
+                            if name == ' ':
+                                continue
                             try:
                                 college = recruit.contents[8].contents[1].contents[0].get('title')
                                 college_href = recruit.contents[8].contents[1].get('href')
                             except:
                                 continue
-                            name = re.sub(r'[^\x00-\x7F]+','',recruit.contents[6].contents[1].contents[1].text)
-                            rk = recruit.contents[1].contents[1].text.strip()
                             href = recruit.contents[6].contents[1].contents[1].get('href')
                             origin = re.sub(r'[^\x00-\x7F]+','',recruit.contents[6].contents[1].contents[3].text.strip())
                             paren = origin.count('(')
@@ -54,7 +55,7 @@ for season in range(2000,2019):
                             stars = len(recruit.contents[6].contents[5].find_all('span', {'class': 'icon-starsolid yellow'}))
                             rct_srvs = len(recruit.contents[6].contents[5].contents[9].find_all('span', {'class': 'yellow'}))
                             
-                        scraped.loc[len(scraped),] = [season,instgroup,page,rk,name,href,school,city,state,pos,ht,wt,rate,stars,rct_srvs,
+                        scraped.loc[len(scraped),] = [season,instgroup,page,name,href,school,city,state,pos,ht,wt,rate,stars,rct_srvs,
                                                         college,college_href]
                             
 scraped.drop_duplicates().to_csv('csv\\recruits.csv', index = False)
