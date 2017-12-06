@@ -1,33 +1,19 @@
 import pandas as pd
-import re
 from fuzzywuzzy import process
 from fuzzywuzzy import fuzz
-import matplotlib.pyplot as plt
 
 remove_char = '([\\t\'\.\,]+)|([^\x00-\x7F]+)| (i+(v*)$|(j|s)r)'
 
 rosters = pd.read_csv('csv\\rosters_cfbr.csv', header = 0)
-rosters.loc[:,'mod_name'] = rosters.loc[:,'player'].apply(lambda x: re.sub(remove_char,'',x.lower()))
-
 recruits = pd.read_csv('csv\\recruits.csv', header = 0)
-recruits.loc[:,'mod_name'] = recruits.loc[:,'name'].apply(lambda x: re.sub(remove_char,'',x.lower()))
 
 team_match = pd.read_csv('csv\\team_index.csv', header = 0)
 
-#for season in range(2009,2018):
-#    for team in list(rosters['team'].drop_duplicates()):
-#        roster = rosters.loc[(rosters['season'] == season) & (rosters['team'] == team) & (pd.isnull(rosters['href']) == False),]
-#        for index, row in roster.iterrows():
-#            other_players = roster.loc[(roster['href'] != row['href'])]
-#            match = process.extractOne(row['player'], list(other_players['player']))
-#            if match[1] > 90:
-#                print(season,team,row['player'],match)
-#                break
-
-
-#rosters.loc[(rosters['team'] == 'Alabama') & (rosters['season'] == 2009)]
-
-player_match = pd.DataFrame(columns = ['href_247', 'href_cfbr', 'team_cfbr', 'season', 'player'])
+try:
+    player_match = pd.read_csv('csv\\player_match.csv', header = 0)
+except:
+    player_match = pd.DataFrame(columns = ['href_247', 'href_cfbr', 'instgroup', 'team_cfbr', 'season', 'player'])
+    
 for season in reversed(range(rosters['season'].min() - 4,rosters['season'].max() + 1)):
     print(season)
     for college in list(recruits.loc[recruits['season'] == season,'college'].drop_duplicates().sort_values()):
@@ -38,19 +24,30 @@ for season in reversed(range(rosters['season'].min() - 4,rosters['season'].max()
         
         for i in range(4):
             for threshold in [100,93,87]:
-                recruit_class = recruits.loc[(recruits['season'] == season) & (recruits['college'] == college) & (~recruits['href'].isin(player_match.loc[~pd.isnull(player_match['team_cfbr']),'href_247'])),]
-                roster = rosters.loc[(rosters['season'] == season + i) & (rosters['team'] == team_name) & (~rosters['href'].isin(player_match.loc[player_match['team_cfbr'] == team_name,'href_cfbr'])),]
+                matched_players = player_match.loc[~pd.isnull(player_match['href_cfbr']),]
+                recruit_class = recruits.loc[(recruits['season'] == season) & (recruits['college'] == college) & (~recruits['href'].isin(matched_players['href_247'])),]
+                roster = rosters.loc[(rosters['season'] == season + i) & (rosters['team'] == team_name) & (~rosters['href'].isin(matched_players['href_cfbr'])),]
                 if len(roster) > 0:
                     for index, row in recruit_class.iterrows():
+                        if i == 0:
+                            rost_class = [None,'FR'] if (row['instgroup'] == 'HighSchool') else [None,'FR','SO','JR','SR']
+                        elif i == 1:
+                            rost_class = [None,'FR','SO'] if (row['instgroup'] == 'HighSchool') else [None,'FR','SO','JR','SR']
+                        elif i == 2:
+                            rost_class = [None,'FR','SO','JR'] if (row['instgroup'] == 'HighSchool') else [None,'FR','SO','JR','SR']
+                        else:
+                            rost_class = [None,'SO','JR','SR']
+                        
                         fuzzymatch = process.extractOne(row['mod_name'], list(roster['mod_name']), scorer = fuzz.partial_ratio)
-                        if fuzzymatch[1] >= threshold:
+                        if (fuzzymatch[1] >= threshold):
                             roster_player = roster.loc[roster['mod_name'] == fuzzymatch[0]].iloc[0]
-                            if not pd.isnull(roster_player['href']):
-                                player_match.loc[len(player_match)] = [row['href'],roster_player['href'],team_name,season,None]
-                            else:
-                                player_match.loc[len(player_match)] = [row['href'],None,team_name,season,roster_player['player']]
-#                            if fuzzymatch[1] < 93:
-#                                print(season,college,row['mod_name'],fuzzymatch)
+                            if (roster_player['class'] in rost_class):
+                                if not pd.isnull(roster_player['href']):
+                                    player_match.loc[len(player_match)] = [row['href'],roster_player['href'],row['instgroup'],team_name,season,None]
+                                else:
+                                    player_match.loc[len(player_match)] = [row['href'],None,row['instgroup'],team_name,season,roster_player['player']]
+#                                if fuzzymatch[1] < 93:
+#                                    print(season,college,row['mod_name'],fuzzymatch)
                                   
 pos_match = pd.DataFrame(columns = ['cfbr','rct','total'])
 for index, row in player_match.loc[pd.isnull(player_match['player'])].iterrows():
@@ -73,8 +70,9 @@ for season in reversed(range(rosters['season'].min() - 4,rosters['season'].max()
             continue
         
         for i in range(4):
-            recruit_class = recruits.loc[(recruits['season'] == season) & (recruits['college'] == college) & (~recruits['href'].isin(player_match.loc[~pd.isnull(player_match['team_cfbr']),'href_247'])),]
-            roster = rosters.loc[(rosters['season'] == season + i) & (rosters['team'] == team_name) & (~rosters['href'].isin(player_match.loc[player_match['team_cfbr'] == team_name,'href_cfbr'])),]
+            matched_players = player_match.loc[~pd.isnull(player_match['href_cfbr']),]
+            recruit_class = recruits.loc[(recruits['season'] == season) & (recruits['college'] == college) & (~recruits['href'].isin(matched_players['href_247'])),]
+            roster = rosters.loc[(rosters['season'] == season + i) & (rosters['team'] == team_name) & (~rosters['href'].isin(matched_players['href_cfbr'])),]
             if len(roster) > 0:
                 for index, row in recruit_class.iterrows():
                     fuzzymatch = process.extractOne(row['mod_name'], list(roster['mod_name']), scorer = fuzz.partial_ratio)
@@ -82,120 +80,34 @@ for season in reversed(range(rosters['season'].min() - 4,rosters['season'].max()
                     rct_last = row['mod_name'].split()[-1].split('-')
                     
                     roster_player = roster.loc[roster['mod_name'] == fuzzymatch[0]].iloc[0]
+
                     rost_pos = list(pos_match.loc[(pos_match['total'] >= 25) & (pos_match['cfbr'] == roster_player['pos']),'rct'])
-                    
-                    if ((fuz_last[0] in rct_last) or (rct_last[0] in fuz_last)) and (row['pos'] in rost_pos):
-                        if not pd.isnull(roster_player['href']):
-                            player_match.loc[len(player_match)] = [row['href'],roster_player['href'],team_name,season,None]
-                        else:
-                            player_match.loc[len(player_match)] = [row['href'],None,team_name,season,roster_player['player']]
-                        print(row['mod_name'],fuzzymatch)
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-        
-        
-        
-        
-        
-        
-
-            for class_ in ['non-juco','juco']:
-                for match_atmpt,class2 in zip(range(4),['FR','SO','JR','SR']):
-                    roster_class = rosters.loc[(rosters['season'] == season + match_atmpt) & (rosters['team'] == team_name)
-                        & (~rosters['href'].isin(player_match.loc[player_match['team_cfbr'] == team_name,'href_cfbr'])),]
-                    if class_ == 'non-juco':
-                        roster_class = roster_class.loc[(roster_class['class'] == class2) | pd.isnull(rosters['class']),]
+                    if i == 0:
+                        rost_class = [None,'FR'] if (row['instgroup'] == 'HighSchool') else [None,'FR','SO','JR','SR']
+                    elif i == 1:
+                        rost_class = [None,'FR','SO'] if (row['instgroup'] == 'HighSchool') else [None,'FR','SO','JR','SR']
+                    elif i == 2:
+                        rost_class = [None,'FR','SO','JR'] if (row['instgroup'] == 'HighSchool') else [None,'FR','SO','JR','SR']
                     else:
-                        roster_class = roster_class.loc[(roster_class['class'] != 'FR') | pd.isnull(rosters['class']),]
-    
-                    if len(roster_class) > 0:
-                        recruit_class = recruits.loc[(recruits['season'] == season) & (recruits['college'] == college)
-                                & (~recruits['href'].isin(player_match.loc[~pd.isnull(player_match['team_cfbr']),'href_247'])),]
-                        if class_ == 'non-juco':
-                             recruit_class = recruit_class.loc[recruits['instgroup'] != 'JuniorCollege',]
+                        rost_class = [None,'SO','JR','SR']
+                    
+                    if ((fuz_last[0] in rct_last) or (rct_last[0] in fuz_last)) and (row['pos'] in rost_pos) and (roster_player['class'] in rost_class):
+                        if not pd.isnull(roster_player['href']):
+                            player_match.loc[len(player_match)] = [row['href'],roster_player['href'],row['instgroup'],team_name,season,None]
                         else:
-                             recruit_class = recruit_class.loc[recruits['instgroup'] == 'JuniorCollege',]
-    
-                        for index, row in recruit_class.iterrows():
-                            fuzzymatches = process.extractOne(row['mod_name'], list(roster_class['mod_name']))
-                            if fuzzymatches[1] >= threshold:
-                                if (threshold >= 87)\
-                                    or ((((row['mod_name'].split()[-1] in fuzzymatches[0].split()[-1])
-                                        or (fuzzymatches[0].split()[-1] in row['mod_name'].split()[-1]))
-                                        if (row['mod_name'].count('-') > 0) or (fuzzymatches[0].count('-') > 0)
-                                            else (fuzzymatches[0].split()[-1] == row['mod_name'].split()[-1]))
-                                    and (fuzz.partial_ratio(row['mod_name'].split()[0], fuzzymatches[0].split()[0]) >= 50)):
-                                        roster_matches = roster_class.loc[roster_class['mod_name'] == fuzzymatches[0],]
-                                        if len(roster_matches.loc[~pd.isnull(roster_class['href'])]) == 1:
-                                            player_match.loc[len(player_match),] = [row['href'],roster_matches['href'].iloc[0], team_name, None, None]
-                                        elif len(roster_matches.loc[pd.isnull(roster_class['href'])]) == 1:
-                                            player = roster_matches.loc[pd.isnull(roster_class['href']),'player'].iloc[0]
-                                            player_match.loc[len(player_match),] = [row['href'],None, team_name, season, player]
-                                        elif len(roster_matches.loc[pd.isnull(roster_class['href']) & ~pd.isnull(roster_class['class']),]) == 1:
-                                            player = roster_matches.loc[pd.isnull(roster_class['href']),'player'].iloc[0]
-                                            player_match.loc[len(player_match),] = [row['href'],None, team_name, season, player]
-                                        elif len(roster_matches.loc[roster_matches['href'].str.contains('iii'),]) == 1:
-                                            player = roster_matches.loc[roster_matches['href'].str.contains('iii'),'player'].iloc[0]
-                                            player_match.loc[len(player_match),] = [row['href'],None, team_name, season, player]
-                                        else:
-                                            raise ValueError('wrong number of matches')
-            
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    if fuzzymatches[0][1] < 95 and fuzzymatches[0][1] > 89:
-                    quest_match.append([index,row['name'],fuzzymatches[0]])
-                print(index, fuzzymatches[0][1], fuzzymatches[0][1] - fuzzymatches[1][1])
-    if
-    
-    if recruit[1]['name'].count('"') > 0:
-        print(recruit[1]['name'])
-    try:
-        x.append(re.compile('[^0-9a-zA-Z\\t\'\.\,]+').search(recruit[1]['name'].lower()).group(0))
-    except:
-        continue
-    re.sub('\t',' ','\t')
-    recruit[1]['season']
+                            player_match.loc[len(player_match)] = [row['href'],None,row['instgroup'],team_name,season,roster_player['player']]
+#                        print(season,college,row['mod_name'],fuzzymatch)
+
+#full_match_list = list(player_match.loc[pd.isnull(player_match['player']),'href_247'])
+#partial_match_list = list(player_match.loc[~pd.isnull(player_match['player']),'href_247'])                            
+#for season in range(rosters['season'].min() - 4,rosters['season'].max() + 1):
+#    total = recruits.loc[recruits['season'] == season]
+#    full_match = total.loc[total['href'].isin(full_match_list)]
+#    temp_match = total.loc[total['href'].isin(partial_match_list)]
+#    
+#    print(str(season))
+#    print('\tfull_match: ' + str(float(len(full_match))/float(len(total))))
+#    print('\tpart_match: ' + str(float(len(full_match) + len(temp_match))/float(len(total))))
 
 
-re.sub('([\\t\'\.\,]+)|([^\x00-\x7F]+)','','deont\\xe9 sheffield'.lower())
+player_match.drop_duplicates().reset_index(drop = True).to_csv('csv\\player_match.csv', index = False)
