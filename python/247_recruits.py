@@ -5,6 +5,8 @@ import re
 
 header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 \
     Safari/537.36'}
+
+remove_char = '([\\t\'\.\,]+)| (i+(v*)$|(j|s)r)'
     
 try:
     scraped = pd.read_csv('csv\\recruits.csv', header = 0).reset_index(drop = True)
@@ -32,6 +34,8 @@ for season in range(2000,2019):
                             continue
                         elif recruit.contents[1].get('class')[0] != 'dfp_ad':
                             name = re.sub(r'[^\x00-\x7F]+','',recruit.contents[6].contents[1].contents[1].text)
+                            mod_name = re.sub(remove_char,'',name.lower())
+                            
                             if name == ' ':
                                 continue
                             try:
@@ -55,7 +59,7 @@ for season in range(2000,2019):
                             stars = len(recruit.contents[6].contents[5].find_all('span', {'class': 'icon-starsolid yellow'}))
                             rct_srvs = len(recruit.contents[6].contents[5].contents[9].find_all('span', {'class': 'yellow'}))
                             
-                        scraped.loc[len(scraped),] = [season,instgroup,page,name,href,school,city,state,pos,ht,wt,rate,stars,rct_srvs,
-                                                        college,college_href]
+                        scraped.loc[len(scraped),] = [season,instgroup,page,name,mod_name,href,school,city,state,pos,ht,wt,rate,stars,
+                                                        rct_srvs,college,college_href]
                             
 scraped.drop_duplicates().to_csv('csv\\recruits.csv', index = False)
