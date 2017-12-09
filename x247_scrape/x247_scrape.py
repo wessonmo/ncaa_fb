@@ -36,12 +36,12 @@ def team_info_247_scrape():
         for team in conf.contents[1].contents[3:]:
             if team != ' ':
                 name = team.contents[1].text
-                if name == 'Albany':
-                    name = 'Albany Great Danes'
-                elif name == 'Virginia Military Institute Keydets':
+                if name == 'Virginia Military Institute Keydets':
                     name = 'VMI Keydets'
                 
                 href = team.contents[1].get('href')
+                if href == '//247sports.com':
+                    continue
                 href_name = href if abbrv_re.search(href) == None else abbrv_re.search(href).group(0)
                 if href not in team_info_df['team_href']:
                     team_info_df.loc[len(team_info_df)] = [name,'https:' + href,href_name]
@@ -88,6 +88,8 @@ def recruits_247_scrape(min_season, latest_class):
 
     page_check_df = recruits_page_check(min_season, latest_class)
     
+    href_re = re.compile('.*(?=\/Season)')
+    
     for season in range(min_season - 4, latest_class + 1):
         for instgroup in ['HighSchool','JuniorCollege','PrepSchool']:
             max_page = page_check_df.loc[(page_check_df['season'] == season) & (page_check_df['instgroup'] == instgroup),'max_page'].iloc[0]
@@ -113,7 +115,7 @@ def recruits_247_scrape(min_season, latest_class):
                                     continue
                                 try:
                                     college = recruit.contents[8].contents[1].contents[0].get('title')
-                                    college_href = recruit.contents[8].contents[1].get('href')
+                                    college_href = href_re.search(recruit.contents[8].contents[1].get('href')).group(0)
                                 except:
                                     continue
                                 href = recruit.contents[6].contents[1].contents[1].get('href')
@@ -134,6 +136,6 @@ def recruits_247_scrape(min_season, latest_class):
                                 
                             recruits_df.loc[len(recruits_df)] = [season,instgroup,page,name,href,school,city,state,pos,ht,wt,rate,stars,
                                                                 rct_srvs,college,college_href]
-                                                            
+                                                                
     recruits_df.drop_duplicates().to_csv(x247_folder_path + '247_recruits.csv', index = False)
     return recruits_df.drop_duplicates()
