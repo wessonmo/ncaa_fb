@@ -48,16 +48,50 @@ def team_info_247_scrape():
                                      
     team_info_df.to_csv(x247_folder_path + '247_team_info.csv', index = False)
     return team_info_df
+    
+def recruits_page_check(min_season, latest_class):
+    try:
+        page_check_df = pd.read_csv(x247_folder_path + '247_page_check.csv', header = 0)
+        sracped_seasons = list(page_check_df['season'].drop_duplicates())
+        
+        necessary_seasons = []
+        for season in range(min_season - 4, latest_class + 1):
+            if season not in sracped_seasons:
+                necessary_seasons.append(season)
+                
+        if necessary_seasons == []:
+            return page_check_df
+    except:
+        page_check_df = pd.DataFrame(columns = ['season','instgroup','max_page'])
+        necessary_seasons = range(min_season - 4, latest_class + 1)
+    
+    page_check_re = re.compile('(?<=\()[0-9]*(?=\))')
+    for season in necessary_seasons:
+        for instgroup in ['HighSchool','JuniorCollege','PrepSchool']:
+            page_check_url = 'https://247sports.com/Season/' + str(season) + '-Football/CompositeRecruitRankings?InstitutionGroup=' + instgroup
+            page_check_req = requests.get(page_check_url, headers = header)
+            page_check_soup = BeautifulSoup(page_check_req.content, 'lxml').find('section', {'class': 'list-page'})
+            
+            max_page = int(page_check_re.search(page_check_soup.contents[1].text).group(0))/50 + (1 if 2157%50 > 0 else 0)
+            
+            page_check_df.loc[len(page_check_df)] = [season,instgroup,max_page]
+                              
+    page_check_df.drop_duplicates().to_csv(x247_folder_path + '247_page_check.csv', index = False)
+    return page_check_df.drop_duplicates()
+     
 
 def recruits_247_scrape(min_season, latest_class):
     try:
         recruits_df = pd.read_csv(x247_folder_path + '247_recruits.csv', header = 0)
     except:
         recruits_df = pd.DataFrame(columns = ['season','instgroup','page'])
-        
+
+    page_check_df = recruits_page_check(min_season, latest_class)
+    
     for season in range(min_season - 4, latest_class + 1):
         for instgroup in ['HighSchool','JuniorCollege','PrepSchool']:
-            for page in range(1,100):
+            max_page = page_check_df.loc[(page_check_df['season'] == season) & (page_check_df['instgroup'] == instgroup),'max_page'].iloc[0]
+            for page in range(1,int(max_page) + 1):
                 if page not in list(recruits_df.loc[(recruits_df['season'] == season) & (recruits_df['instgroup'] == instgroup),'page'].drop_duplicates()):
                     url = 'https://247sports.com/Season/' + str(season) + '-Football/CompositeRecruitRankings?ViewPath=~%2FViews%2F247Sports%2FPlayerSportRanking%2F_SimpleSetForSeason.ascx&InstitutionGroup=' + instgroup + '&Page=' + str(page)
                     req = requests.get(url, headers = header)
