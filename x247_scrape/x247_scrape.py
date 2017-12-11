@@ -84,11 +84,13 @@ def recruits_247_scrape(min_season, latest_class):
     try:
         recruits_df = pd.read_csv(x247_folder_path + '247_recruits.csv', header = 0)
     except:
-        recruits_df = pd.DataFrame(columns = ['season','instgroup','page'])
+        recruits_df = pd.DataFrame(columns = ['season','instgroup','page','recruit_name','recruit_href','team_schoolname','team_href',
+                                              'pos','rating','stars','num_services','height','weight','city','state','high_school'])
 
     page_check_df = recruits_page_check(min_season, latest_class)
     
     href_re = re.compile('.*(?=\/Season)')
+    remove_char = '([\\t\'\.\,]+)|([^\x00-\x7F]+)| (i+(v*)$|(j|s)r)'
     
     for season in range(min_season - 4, latest_class + 1):
         for instgroup in ['HighSchool','JuniorCollege','PrepSchool']:
@@ -109,9 +111,9 @@ def recruits_247_scrape(min_season, latest_class):
                             elif recruit.contents[1].get('data-js') == 'showmore':
                                 continue
                             elif recruit.contents[1].get('class')[0] != 'dfp_ad':
-                                name = re.sub(r'[^\x00-\x7F]+','',recruit.contents[6].contents[1].contents[1].text)
+                                name = re.sub(remove_char,'',recruit.contents[6].contents[1].contents[1].text.lower())
                                 
-                                if name == ' ':
+                                if name in [' ','']:
                                     continue
                                 try:
                                     college = recruit.contents[8].contents[1].contents[0].get('title')
@@ -129,13 +131,15 @@ def recruits_247_scrape(min_season, latest_class):
                                     city,state = None,None
                                 pos = recruit.contents[6].contents[3].contents[1].text
                                 ht = recruit.contents[6].contents[3].contents[3].text
+                                ht = None if (ht[0] not in ['5','6']) else int(ht[0])*12 + float(ht.split('-')[1])
+                                
                                 wt = recruit.contents[6].contents[3].contents[5].text
                                 rate = recruit.contents[6].contents[5].contents[7].text
                                 stars = len(recruit.contents[6].contents[5].find_all('span', {'class': 'icon-starsolid yellow'}))
                                 rct_srvs = len(recruit.contents[6].contents[5].contents[9].find_all('span', {'class': 'yellow'}))
                                 
-                            recruits_df.loc[len(recruits_df)] = [season,instgroup,page,name,href,school,city,state,pos,ht,wt,rate,stars,
-                                                                rct_srvs,college,college_href]
+                            recruits_df.loc[len(recruits_df)] = [season,instgroup,page,name,href,college,college_href,pos,rate,stars,
+                                                                rct_srvs,ht,wt,city,state,school]
                                                                 
     recruits_df.drop_duplicates().to_csv(x247_folder_path + '247_recruits.csv', index = False)
     return recruits_df.drop_duplicates()
