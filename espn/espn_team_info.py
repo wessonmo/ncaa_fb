@@ -33,8 +33,11 @@ def team_info_espn():
                         team = team['team']
                         if team['id'] not in list(team_info_df['id']):
                             team_fullname = re.sub(r'\xe9','e',team['displayName'])
-                            team_info_df.loc[len(team_info_df)] = [team['id'],team_fullname,team['nickname'],team['name'],
+                            team_info_df.loc[len(team_info_df)] = [team['id'],team_fullname,None,team['name'],
                                              team['abbreviation']]
                                              
+    team_info_df['team_schoolname'] = team_info_df.apply(lambda x: x['team_fullname'] if pd.isnull(x['team_nickname']) else re.sub(' ' + x['team_nickname'],'',x['team_fullname']), axis = 1)
+    team_info_df['team_abvname'] = team_info_df.apply(lambda x: None if pd.isnull(x['team_nickname']) else str(x['team_abbv'] + ' ' + x['team_nickname']), axis = 1)
+        
     team_info_df.sort_values('team_fullname').reset_index(drop = True).to_csv(espn_folder_path + 'espn_team_info.csv', index = False)
     return team_info_df
