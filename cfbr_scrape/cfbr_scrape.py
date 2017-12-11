@@ -51,11 +51,22 @@ def team_info_cfbr_scrape():
             city = city_re.search(school_info.text).group(0).strip() if city_re.search(school_info.text) else None
     
             team_info_df.loc[len(team_info_df),] = [full_name,name,href,cap,city]
-            
+
+    for index, row in team_info_df.iterrows():
+        name_split = row['team_schoolname'].split()
+        abv = ''
+        if len(name_split) > 1:
+            for split in name_split:
+                abv += split[0]
+        abv = abv + ' ' + re.sub(row['team_schoolname'] + ' ','',row['team_fullname'])
+        team_info_df.set_value(index,'team_abvname', row['team_fullname'] if (len(name_split) < 2) else abv)
+        
     team_info_df.to_csv(cfbr_folder_path + 'cfbr_team_info.csv', index = False)
     return team_info_df
     
 def roster_scrape(season, team_href, team_name):
+    remove_char = '([\\t\'\.\,]+)|([^\x00-\x7F]+)| (i+(v*)$|(j|s)r)'
+    
     roster_df = pd.DataFrame(columns = ['season', 'team_href', 'team_schoolname', 'player_name', 'player_href', 'class', 'pos'])
                 
     roster_url = 'https://www.sports-reference.com' + team_href + str(season) + '-roster.html'
@@ -68,6 +79,7 @@ def roster_scrape(season, team_href, team_name):
         return
     for player in players:
         player_name = player.contents[0].text[:-1] if player.contents[0].text[-1] == '*' else player.contents[0].text
+        player_name = re.sub(remove_char,'',player_name.lower())
 
         try:
             player_href = player.contents[0].contents[0].get('href')
@@ -116,7 +128,7 @@ def stats_scrape(roster_df,team_name):
             for stat in player_row.contents[2:]:
                 roster_df.set_value(index,stat.get('data-stat'),float(0 if stat.text == '' else stat.text))
                 
-    stats_df = roster_df.fillna(0)
+    stats_df = roster_df.drop_duplicates()
     return stats_df
     
 def active_roster(min_season, current_year):
@@ -147,9 +159,8 @@ def active_roster(min_season, current_year):
             active_roster_df.loc[len(active_roster_df)] = [season,href]
     
     active_roster_df.to_csv(cfbr_folder_path + 'cfbr_active_rosters.csv', index = False)
-    return active_roster_df
-            
-
+    return active_roster_df    
+    
 def player_stats_scrape(min_season, current_year):
     try:
         player_stats_df = pd.read_csv(cfbr_folder_path + 'cfbr_player_stats.csv', header = 0)
@@ -177,6 +188,7 @@ def player_stats_scrape(min_season, current_year):
                 player_stats_df = pd.concat([player_stats_df,roster_df])
             else:
                 player_stats_df = pd.concat([player_stats_df,stats_df])
-                        
+                
+    player_stats_df.loc[:,player_stats_df.columns[7:]] = player_stats_df.loc[:,player_stats_df.columns[7:]].fillna(0)
     player_stats_df.reset_index(drop = True).to_csv(cfbr_folder_path + 'cfbr_player_stats.csv', index = False)
     return player_stats_df.drop_duplicates()
