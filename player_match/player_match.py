@@ -42,9 +42,6 @@ def team_match(min_season, latest_rct_class):
                 if fuzzymatch[1] > threshold:
                     href = rem_cfbr.loc[rem_cfbr['team_' + name_type] == fuzzymatch[0],'team_href'].iloc[0]
                     team_index.set_value(index,'cfbr_href',href)
-                    
-    for index, row in team_index.loc[~pd.isnull(team_index['cfbr_href'])].iterrows():
-        print(row['cfbr_href'],row['x247_href'])
             
     return team_index
     
@@ -64,6 +61,7 @@ def player_match(min_season):
     player_match = pd.DataFrame(columns = ['cfbr_season','cfbr_teamhref','cfbr_playerhref','cfbr_playername','x247_season','x247_instgroup','x247_playerhref'])
     
     for season in reversed(range(min_season - 4,latest_rct_class + 1)):
+    for season in range(min_season - 4,latest_rct_class + 1):
         rct_teams = list(recruits_df.loc[(recruits_df['season'] == season) & (recruits_df['team_href'].isin(team_index['x247_href'])),'team_href'].drop_duplicates())
         for rct_team in rct_teams:
             cfbr_teamhref = team_index.loc[team_index['x247_href'] == rct_team,'cfbr_href'].iloc[0]
@@ -73,10 +71,10 @@ def player_match(min_season):
             rct_class = recruits_df.loc[(recruits_df['season'] == season) & (recruits_df['team_href'] == rct_team)]
             
             if (len(rct_class) > 0) and (len(rost_class) > 0):
-                for index, row in rost_class.iterrows():
-                    fuzzymatches = process.extract(row['player_name'],rost_class['rct_name'],limit = 2)
+                for index, row in rct_class.iterrows():
+                    fuzzymatches = process.extract(row['recruit_name'],rost_class['player_name'],limit = 2)
                     if (fuzzymatches[0][1] > 90) & (fuzzymatches[1][1] > 90):
-                        raise ValueError('double match')
+                        print(season,cfbr_teamhref,fuzzymatches)
             for threshold in [100,93,87]:
                 for i in range(4):
                     
