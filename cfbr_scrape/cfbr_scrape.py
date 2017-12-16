@@ -128,6 +128,13 @@ def stats_scrape(roster_df,team_name):
             for stat in player_row.contents[2:]:
                 roster_df.set_value(index,stat.get('data-stat'),float(0 if stat.text == '' else stat.text))
                 
+    for index, row in roster_df.iterrows():
+        #placeholder for deduping code
+#        if row['player_name'] == 'jk scott':
+#            break
+        roster_df.loc[roster_df['player_name'] == 'jk scott']
+        
+                
     stats_df = roster_df.drop_duplicates()
     return stats_df
     
