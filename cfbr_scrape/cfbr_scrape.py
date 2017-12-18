@@ -185,9 +185,12 @@ def href_dedupe_process(seasons,team_href,href1,href2):
                 class_ = None if player_row.contents[3].text == '' else player_row.contents[3].text
                 temp_df.loc[len(temp_df)] = [href,season,new_team_href,class_,phys]
         
-    temp_df = temp_df.loc[temp_df['season'].isin(seasons) & (temp_df['team_href'] == team_href)].drop_duplicates()
+    temp_df = temp_df.loc[temp_df['season'].isin(seasons)].drop_duplicates()
     href1_df = temp_df.loc[temp_df['player_href'] == href1]
     href2_df = temp_df.loc[temp_df['player_href'] == href2]
+    if (len(href1_df) == len(href2_df)) | (team_href not in list(href1_df['team_href'])) | (team_href not in list(href2_df['team_href'])):
+        href1_df = href1_df.loc[href1_df['team_href'] == team_href]
+        href2_df = href2_df.loc[href2_df['team_href'] == team_href]
     if len(href1_df) == len(href2_df):
         href1_df = href1_df.loc[pd.isnull(href1_df['class']) == False]
         href2_df = href2_df.loc[pd.isnull(href2_df['class']) == False]
@@ -222,7 +225,8 @@ def player_stats_deduped(stats_df):
                 match_rows = players_df.loc[players_df['player_name'].isin(name_list),'player_href'].drop_duplicates()
                 if len(match_rows) == 2:
                     href1 = match_rows.drop_duplicates().iloc[0]
-                    if href1 == '/cfb/players/jamil-merrell-1.html':
+                    if href1 in ['/cfb/players/jamil-merrell-1.html','/cfb/players/jamel-turner-1.html']:
+                        ##### different positions ###
                         continue
                     try:
                         href2 = match_rows.drop_duplicates().iloc[1]
