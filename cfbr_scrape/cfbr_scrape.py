@@ -163,13 +163,18 @@ def active_roster(min_season, current_year):
     active_roster_df.to_csv(cfbr_folder_path + 'cfbr_active_rosters.csv', index = False)
     return active_roster_df
     
-def href_dedupe_process(seasons,team_href,dedupe_df,href1,href2):
-    print(team_href,href1,href2)
-    temp_df = pd.DataFrame(columns = ['player_href','season','team_href','class'])
+def href_dedupe_process(seasons,team_href,href1,href2):
+    print(seasons,team_href,href1,href2)
+    temp_df = pd.DataFrame(columns = ['player_href','season','team_href','class','phys'])
     for href in [href1,href2]:
         player_url = 'https://www.sports-reference.com' + href
         player_req = requests.get(player_url, headers = header)
         player_soup = BeautifulSoup(player_req.content, 'lxml')
+        
+        try:
+            phys = True if player_soup.find('div', {'id': 'info'}).contents[1].contents[1].contents[6].text.strip() != '' else False
+        except:
+            phys = False
         
         player_tables = player_soup.find_all('tbody')
         for table in player_tables:
@@ -178,16 +183,26 @@ def href_dedupe_process(seasons,team_href,dedupe_df,href1,href2):
                 season = int(player_row.contents[0].text) if player_row.contents[0].text[0] != '*' else int(player_row.contents[0].text[1:])
                 new_team_href = re.sub('[0-9]{4}\.html','',player_row.contents[1].contents[0].get('href'))
                 class_ = None if player_row.contents[3].text == '' else player_row.contents[3].text
-                temp_df.loc[len(temp_df)] = [href,season,new_team_href,class_]
+                temp_df.loc[len(temp_df)] = [href,season,new_team_href,class_,phys]
         
-    temp_df = temp_df.loc[temp_df['season'].isin(seasons) & (temp_df['team_href'] == team_href) & (pd.isnull(temp_df['class']) == False)].drop_duplicates()
+    temp_df = temp_df.loc[temp_df['season'].isin(seasons) & (temp_df['team_href'] == team_href)].drop_duplicates()
     href1_df = temp_df.loc[temp_df['player_href'] == href1]
     href2_df = temp_df.loc[temp_df['player_href'] == href2]
+    if len(href1_df) == len(href2_df):
+        href1_df = href1_df.loc[pd.isnull(href1_df['class']) == False]
+        href2_df = href2_df.loc[pd.isnull(href2_df['class']) == False]
     
     if len(href1_df) > len(href2_df):
         return href1, href2
     elif len(href1_df) < len(href2_df):
         return href2, href1
+    elif (True in href1_df['phys']) and (False in href2_df['phys']):
+        return href1, href2
+    elif (True in href2_df['phys']) and (False in href1_df['phys']):
+        return href2, href1
+    elif href1 in ['/cfb/players/robert-mcclain-iii-1.html','/cfb/players/melvin-stephenson-ii-1.html']:
+        return href1, href2
+        ############# pairs with same position, same names (excluding suffix) ###################################
     else:
         raise ValueError(href1,href2,'indistinguishable player_hrefs')
     
@@ -195,24 +210,31 @@ def player_stats_deduped(stats_df):
     for min_season in range(stats_df['season'].min(),stats_df['season'].max() - 3):
         seasons = range(min_season,min_season + 5)
         for team_href in list(stats_df.loc[stats_df['season'].isin(seasons) & (stats_df['dedupe'] == 0),'team_href'].drop_duplicates()):
+            if (seasons[0] < 2013) and (team_href in ['/cfb/schools/minnesota/','/cfb/schools/oregon/']):
+                # 3 hrefs
+                continue
             players_df = stats_df.loc[stats_df['season'].isin(seasons) & (stats_df['team_href'] == team_href) & (pd.isnull(stats_df['player_href']) == False),['player_name','player_href']].drop_duplicates()
             for index, row in players_df.iterrows():
-                fuzzymatches = process.extract(row['player_name'],list(players_df.loc[players_df['player_name'] != row['player_name'],'player_name'].drop_duplicates()),limit = 2)
-                if fuzzymatches[1][1] > 90:
-                    href_count = players_df.loc[players_df['player_name'].isin([row['player_name'],fuzzymatches[1][0]]),'player_href'].drop_duplicates()
-                    dedupe_df = stats_df.loc[stats_df['player_name'].isin([row['player_name'],fuzzymatches[1][0]]) & stats_df['season'].isin(seasons) & (stats_df['team_href'] == team_href)]
-                else:
-                    href_count = players_df.loc[players_df['player_name'] == row['player_name'],'player_href'].drop_duplicates()
-                    dedupe_df = stats_df.loc[(stats_df['player_name'] == row['player_name']) & stats_df['season'].isin(seasons) & (stats_df['team_href'] == team_href)]
-                if len(href_count) == 2:
-                    href1 = dedupe_df['player_href'].drop_duplicates().iloc[0]
-                    href2 = dedupe_df['player_href'].drop_duplicates().iloc[1]
+                name_list = [row['player_name']]
+                fuzzymatch = process.extractOne(row['player_name'],list(players_df.loc[players_df['player_name'] != row['player_name'],'player_name'].drop_duplicates()))
+                if fuzzymatch[1] > 90:
+                    name_list += [fuzzymatch[0]]
+                match_rows = players_df.loc[players_df['player_name'].isin(name_list),'player_href'].drop_duplicates()
+                if len(match_rows) == 2:
+                    href1 = match_rows.drop_duplicates().iloc[0]
+                    if href1 == '/cfb/players/jamil-merrell-1.html':
+                        continue
+                    try:
+                        href2 = match_rows.drop_duplicates().iloc[1]
+                    except:
+                        continue
 
-                    winner,loser = href_dedupe_process(seasons,team_href,dedupe_df,href1,href2)
+                    winner,loser = href_dedupe_process(seasons,team_href,href1,href2)
                     
-                    stats_df.loc[stats_df['player_href'] == loser,'player_href'] = winner
-                elif len(href_count) > 2:
-                    raise ValueError(seasons,team_href,'too many player hrefs')
+                    stats_df.loc[(stats_df['player_href'] == loser) | (stats_df['player_name'].isin(name_list) & stats_df['season'].isin(seasons) & (stats_df['team_href'] == team_href) & (pd.isnull(stats_df['player_href']) == False)),'player_href'] = winner
+                elif len(match_rows) > 2:
+#                    raise ValueError(seasons,team_href,'too many player hrefs')
+                    continue
             stats_df.loc[stats_df['season'].isin(seasons) & (stats_df['dedupe'] == 0) & (stats_df['team_href'] == team_href),'dedupe'] = 1
     return stats_df
     
@@ -225,12 +247,13 @@ def player_stats_scrape(min_season, current_year):
     team_info_df = team_info_cfbr_scrape()
     active_rosters = active_roster(min_season, current_year)
     
-    for index, row in active_rosters.iterrows():
-        season = int(row['season'])
-        print(season)
+    season = None
+    for index, row in active_rosters.sort_values(['season','team_href']).iterrows():
+        if int(row['season']) != season:
+            season = int(row['season'])
+            print(season)
         team_schoolname = team_info_df.loc[team_info_df['team_href'] == row['team_href'],'team_schoolname'].iloc[0]
         if len(player_stats_df.loc[(player_stats_df['team_schoolname'] == team_schoolname) & (player_stats_df['season'] == season),]) < 1:
-            print(team_schoolname)
             roster_df = roster_scrape(season, row['team_href'],team_schoolname)
             try:
                 roster_df.iloc[0]
@@ -245,22 +268,11 @@ def player_stats_scrape(min_season, current_year):
                 player_stats_df = pd.concat([player_stats_df,roster_df])
             else:
                 player_stats_df = pd.concat([player_stats_df,stats_df])
-                
-    player_stats_df.loc[:,player_stats_df.columns[7:]] = player_stats_df.loc[:,player_stats_df.columns[7:]].fillna(0)
+    
+    ignore_cols = ['season', 'team_href', 'team_schoolname', 'player_name', 'player_href', 'class', 'pos']
+    player_stats_df.loc[:,player_stats_df.columns.difference(ignore_cols)] = player_stats_df.loc[:,player_stats_df.columns.difference(ignore_cols)].fillna(0)
+    player_stats_df = player_stats_df.drop_duplicates().reset_index(drop = True)
+    player_stats_df.to_csv(cfbr_folder_path + 'cfbr_player_stats.csv', index = False)
     player_stats_df = player_stats_deduped(player_stats_df).drop_duplicates().reset_index(drop = True)
     player_stats_df.to_csv(cfbr_folder_path + 'cfbr_player_stats.csv', index = False)
     return player_stats_df
-
-
-                    
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
