@@ -270,8 +270,6 @@ def href_dedupe_process(seasons,team_href,match_list):
         href2_name = href2_df['player_name'].iloc[0]
         href2_pos_group = 'DB' if href2_df['pos'].iloc[0] in ['CB','S'] else href2_df['pos'].iloc[0]
         
-#    temp_df = temp_df.loc[temp_df['season'].isin(seasons)].drop_duplicates()   
-        
     if (len(href1_df) == len(href2_df)) | (team_href not in list(href1_df['team_href'])) | (team_href not in list(href2_df['team_href'])):
         href1_df = href1_df.loc[href1_df['team_href'] == team_href]
         href2_df = href2_df.loc[href2_df['team_href'] == team_href]
@@ -301,12 +299,6 @@ def href_dedupe_process(seasons,team_href,match_list):
         winner = href1
         losers = list(set(match_list) - set([href1]))
         return winner, losers
-#    elif href1 in ['/cfb/players/robert-mcclain-iii-1.html','/cfb/players/melvin-stephenson-ii-1.html']:
-#        return href1, [href2]
-        ############# pairs with same position, same names (excluding suffix) ###################################
-#    elif href1 in ['/cfb/players/josh-reese-1.html']:
-#        return href1, [href2]
-        ############# pairs with same everything but split career into 2 ###################################
     else:
         raise ValueError(href1,href2,'indistinguishable player_hrefs')
     
@@ -316,10 +308,6 @@ def player_stats_deduped(stats_df):
     for min_season in range(stats_df['season'].min(),stats_df['season'].max() - 3):
         seasons = range(min_season,min_season + 5)
         for team_href in list(stats_df.loc[stats_df['season'].isin(seasons) & (stats_df['dedupe'] == 0),'team_href'].drop_duplicates()):
-#            print(min_season,team_href)
-#            if (seasons[0] < 2013) and (team_href in ['/cfb/schools/oregon/']):
-#                # 3 hrefs
-#                continue
             players_df = stats_df.loc[stats_df['season'].isin(seasons) & (stats_df['team_href'] == team_href) & (pd.isnull(stats_df['player_href']) == False),['player_name','player_href']].drop_duplicates()
             for index, row in players_df.iterrows():
                 name_list = [row['player_name']]
@@ -327,20 +315,25 @@ def player_stats_deduped(stats_df):
                 if fuzzymatch[1] > 90:
                     name_list += [fuzzymatch[0]]
                 match_list = list(players_df.loc[players_df['player_name'].isin(name_list),'player_href'].drop_duplicates())
-                if (len(match_list) == 2) & (match_list[0] in ['/cfb/players/walker-woods-1.html','/cfb/players/sam-b-richardson-1.html','/cfb/players/ty-mcgill-1.html','/cfb/players/erik-benjamin-1.html','/cfb/players/jamil-merrell-1.html','/cfb/players/david-hawkins-1.html', '/cfb/players/ralph-smith-4.html','/cfb/players/mykal-myers-1.html']):
-                    # different, maybe different, same, same, different, different, no rows, same
+                if (len(match_list) == 2) & (match_list[0] in [
+                    # different
+                    '/cfb/players/walker-woods-1.html','/cfb/players/jamil-merrell-1.html','/cfb/players/david-hawkins-1.html',
+                    # maybe
+                    '/cfb/players/sam-b-richardson-1.html',
+                    # same
+                    '/cfb/players/ty-mcgill-1.html','/cfb/players/erik-benjamin-1.html','/cfb/players/mykal-myers-1.html',
+                    # null
+                    '/cfb/players/ralph-smith-4.html'
+                    ]):
+                    
                     # for different, maybe overlapping years?
                     continue
-#                print(match_list)
                 if len(match_list) >= 2:
 
                     winner,losers = href_dedupe_process(seasons,team_href,match_list)
                     
                     stats_df.loc[stats_df['player_href'].isin(losers) | (stats_df['player_name'].isin(name_list) & stats_df['season'].isin(seasons) & (stats_df['team_href'] == team_href) & (pd.isnull(stats_df['player_href']) == False)),'player_href'] = winner
                     players_df.loc[players_df['player_href'].isin(losers),'player_href'] = winner
-#                elif len(match_list) > 2:
-#                    raise ValueError(seasons,team_href,'too many player hrefs')
-#                    continue
             stats_df.loc[stats_df['season'].isin(seasons) & (stats_df['dedupe'] == 0) & (stats_df['team_href'] == team_href),'dedupe'] = 1
     return stats_df
     
