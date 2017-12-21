@@ -80,13 +80,14 @@ def recruits_page_check(min_season, latest_class):
     return page_check_df.drop_duplicates()
      
 
-def recruits_247_scrape(min_season, latest_class):
+def recruits_247_scrape(min_season, current_date):
     try:
         recruits_df = pd.read_csv(x247_folder_path + '247_recruits.csv', header = 0)
     except:
         recruits_df = pd.DataFrame(columns = ['season','instgroup','page','recruit_name','recruit_href','team_schoolname','team_href',
                                               'pos','rating','stars','num_services','height','weight','city','state','high_school'])
 
+    latest_class = current_date[0] - (1 if (current_date[1] < 3) else 0)
     page_check_df = recruits_page_check(min_season, latest_class)
     
     href_re = re.compile('.*(?=\/Season)')
