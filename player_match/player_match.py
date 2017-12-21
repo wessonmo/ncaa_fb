@@ -13,7 +13,7 @@ from cfbr_scrape.cfbr_scrape import team_info_cfbr_scrape, player_stats_scrape
 
 match_folder_path = 'player_match\\csv\\'
 
-def team_match(min_season, latest_rct_class):
+def team_match():
     team_espn = team_info_espn()
     team_cfbr = team_info_cfbr_scrape()
     team_247 = team_info_247_scrape()
@@ -53,24 +53,18 @@ def match_values(rost_class,match_name):
         match_list = [rost_player['team_href'],rost_player['player_href'],None,None]
     return match_list
     
-def dedupe():
-    return
-    
 def player_match(min_season):    
     
-    curr_dt = time.strftime('%Y %m').split()
+    current_date = [int(x) for x in time.strftime('%Y %m').split()]
+    recruits_df = recruits_247_scrape(min_season, current_date)
+    rosters_df = player_stats_scrape(min_season,current_date)
+    max_season = min(recruits_df['season'].max(),rosters_df['season'].max())
     
-    latest_rct_class = int(curr_dt[0]) - (1 if int(curr_dt[1]) < 3 else 0)
-    recruits_df = recruits_247_scrape(min_season, latest_rct_class)
-    
-    latest_roster = int(curr_dt[0]) - (1 if int(curr_dt[1]) < 8 else 0)
-    rosters_df = player_stats_scrape(min_season,latest_roster)
-    
-    team_index = team_match(min_season, latest_rct_class)
+    team_index = team_match()
     
     player_match = pd.DataFrame(columns = ['cfbr_teamhref','cfbr_playerhref','cfbr_season','cfbr_playername','x247_season','x247_instgroup','x247_playerhref'])
     
-    for season in reversed(range(min_season - 4,latest_rct_class + 1)):
+    for season in reversed(range(min_season - 4,max_season + 1)):
         rct_teams = list(recruits_df.loc[(recruits_df['season'] == season) & (recruits_df['team_href'].isin(team_index['x247_href'])),'team_href'].drop_duplicates())
         for rct_team in rct_teams:
             cfbr_teamhref = team_index.loc[team_index['x247_href'] == rct_team,'cfbr_href'].iloc[0]
