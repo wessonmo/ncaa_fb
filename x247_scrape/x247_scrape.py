@@ -9,6 +9,8 @@ import time
 x247_folder_path = 'x247_scrape\\csv\\'
 
 header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Chrome/22.0.1216.0 Safari/537.2'}
+          
+pos_group_df = pd.read_csv(x247_folder_path + '247_pos_group.csv', header = 0)
 
 def team_info_247_scrape():
     try:
@@ -98,7 +100,10 @@ def recruits_247_scrape(min_season, current_date):
             max_page = page_check_df.loc[(page_check_df['season'] == season) & (page_check_df['instgroup'] == instgroup),'max_page'].iloc[0]
             for page in range(1,int(max_page) + 1):
                 if page not in list(recruits_df.loc[(recruits_df['season'] == season) & (recruits_df['instgroup'] == instgroup),'page'].drop_duplicates()):
-                    url = 'https://247sports.com/Season/' + str(season) + '-Football/CompositeRecruitRankings?ViewPath=~%2FViews%2F247Sports%2FPlayerSportRanking%2F_SimpleSetForSeason.ascx&InstitutionGroup=' + instgroup + '&Page=' + str(page)
+                    if instgroup == 'PrepSchool':
+                        url = 'https://247sports.com/Season/' + str(season) + '-Football/CompositeRecruitRankings?InstitutionGroup=PrepSchool'
+                    else:
+                        url = 'https://247sports.com/Season/' + str(season) + '-Football/CompositeRecruitRankings?ViewPath=~%2FViews%2F247Sports%2FPlayerSportRanking%2F_SimpleSetForSeason.ascx&InstitutionGroup=' + instgroup + '&Page=' + str(page)
                     req = requests.get(url, headers = header)
                     soup = BeautifulSoup(req.content, 'lxml').find('section', {'id': 'page-content'})
                     
@@ -142,5 +147,6 @@ def recruits_247_scrape(min_season, current_date):
                             recruits_df.loc[len(recruits_df)] = [season,instgroup,page,name,href,college,college_href,pos,rate,stars,
                                                                 rct_srvs,ht,wt,city,state,school]
                                                                 
+    recruits_df['pos_group'] = pd.merge(recruits_df[['pos']], pos_group_df, how = 'left', on = 'pos')['pos_group']
     recruits_df.drop_duplicates().to_csv(x247_folder_path + '247_recruits.csv', index = False)
     return recruits_df.drop_duplicates()
