@@ -95,6 +95,7 @@ def player_match(min_season):
             print(seasons[0],rct_team)
                                                
     rosters_df['x247_rating'] = rosters_df['x247_rating'].fillna(0)
+    rosters_df['espn_teamid'] = pd.merge(rosters_df, team_index, how = 'left', left_on = 'team_href', right_on = 'cfbr_href')['espn_teamid']
     rosters_df.to_csv(match_folder_path + 'matched_stats.csv', index = False)
     
     potential_match = potential_match.loc[~potential_match['recruit_href'].isin(rosters_df['x247_href'])]
