@@ -140,7 +140,8 @@ def stats_scrape(roster_df,team_name,skip_stats):
                 var = 'player_name'
             if player_loc not in list(roster_df[var]):
                 player_href = player_loc if var == 'player_href' else None
-                player_name = re.sub(remove_char,'',player_row.contents[1].contents[0].text.lower().strip()) if (var == 'player_href') else player_loc
+                player_name = re.sub(remove_char,'',player_row.contents[1].contents[0].text.lower().strip())\
+                    if (var == 'player_href') else player_loc
                 if (' ' in player_name):
                     row_list = [season,team_href,team_name,player_name,player_href]
                     roster_df.loc[len(roster_df)] = row_list + [None] * (len(roster_df.columns) - 5)
@@ -210,7 +211,8 @@ def href_dedupe_process(seasons,team_href,match_list):
         name = player_soup.find('div', {'id': 'info'}).contents[1].contents[1].contents[1].text.strip().lower()
         name = re.sub(remove_char,'',name)
         try:
-            pos_list = re.sub(': ','',player_soup.find('div', {'id': 'info'}).contents[1].contents[1].contents[4].contents[2].strip()).split('/')
+            pos_list = re.sub(': ','',
+                              player_soup.find('div', {'id': 'info'}).contents[1].contents[1].contents[4].contents[2].strip()).split('/')
             pos_group_list = []
             for pos in pos_list:
                 if pos in list(pos_group_df['pos']):
@@ -230,7 +232,8 @@ def href_dedupe_process(seasons,team_href,match_list):
         for table in player_tables:
             player_rows = table.find_all('tr')
             for player_row in player_rows:
-                season = int(player_row.contents[0].text) if player_row.contents[0].text[0] != '*' else int(player_row.contents[0].text[1:])
+                season = int(player_row.contents[0].text) if player_row.contents[0].text[0] != '*'\
+                            else int(player_row.contents[0].text[1:])
                 new_team_href = re.sub('[0-9]{4}\.html','',player_row.contents[1].contents[0].get('href'))
                 class_ = None if player_row.contents[3].text == '' else player_row.contents[3].text
                 class_ind = 0 if class_ == None else 1
@@ -333,7 +336,8 @@ def href_dedupe_process(seasons,team_href,match_list):
         else:
             raise ValueError('mismatching names and pos_group')
     else:
-        if (len(href1_df) == len(href2_df)) | (team_href not in list(href1_df['team_href'])) | (team_href not in list(href2_df['team_href'])):
+        if (len(href1_df) == len(href2_df)) | (team_href not in list(href1_df['team_href']))\
+                | (team_href not in list(href2_df['team_href'])):
             href1_df = href1_df.loc[href1_df['team_href'] == team_href]
             href2_df = href2_df.loc[href2_df['team_href'] == team_href]
         if len(href1_df) == len(href2_df):
@@ -369,10 +373,13 @@ def player_stats_deduped(stats_df):
         print(seasons)
         for team_href in list(stats_df.loc[stats_df['season'].isin(seasons) & (stats_df['dedupe'] == 0),'team_href'].drop_duplicates()):
             print('\t' + team_href)
-            players_df = stats_df.loc[stats_df['season'].isin(seasons) & (stats_df['team_href'] == team_href),['player_name','player_href']].drop_duplicates()
+            players_df = stats_df.loc[stats_df['season'].isin(seasons) & (stats_df['team_href'] == team_href),
+                                      ['player_name','player_href']].drop_duplicates()
             for index, row in players_df.iterrows():
                 name_list = [row['player_name']]
-                fuzzymatches = process.extract(row['player_name'],list(players_df.loc[players_df['player_name'] != row['player_name'],'player_name'].drop_duplicates()),limit = 2,scorer = fuzz.token_set_ratio)
+                fuzzymatches = process.extract(row['player_name'],
+                                   list(players_df.loc[players_df['player_name'] != row['player_name'],'player_name'].drop_duplicates()),
+                                   limit = 2,scorer = fuzz.token_set_ratio)
                 for fuzzymatch in fuzzymatches:
                     if (fuzzymatch[1] >= 87):
                         name_list += [fuzzymatch[0]]
@@ -388,15 +395,17 @@ def player_stats_deduped(stats_df):
                     match = 'likely' if error_msg == None else 'unsure'
                     with open(cfbr_folder_path + 'cfbr_player_matches.csv', 'ab') as matchcsv:
                         matchwriter = csv.writer(matchcsv, delimiter = ',', quotechar = '"', quoting = csv.QUOTE_MINIMAL)
-                        matchwriter.writerow([match_list,fuzzymatch[1],match,error_msg])
+                        matchwriter.writerow([match_list,match,error_msg])
                             
                     if error_msg != None:
                         continue
                     
-                    stats_df.loc[(stats_df['season'].isin(seasons) & (stats_df['team_href'] == team_href)) & (stats_df['player_href'].isin(losers) | stats_df['player_name'].isin(name_list)),'player_href'] = winner
+                    stats_df.loc[(stats_df['season'].isin(seasons) & (stats_df['team_href'] == team_href))
+                            & (stats_df['player_href'].isin(losers) | stats_df['player_name'].isin(name_list)),'player_href'] = winner
                     players_df.loc[players_df['player_href'].isin(losers),'player_href'] = winner
                 elif (len(match_list) == 1) and (set(match_list) not in skip_list) and (name_list > 1):
-                    stats_df.loc[stats_df['season'].isin(seasons) & (stats_df['team_href'] == team_href) & stats_df['player_name'].isin(name_list),'player_href'] = match_list[0]
+                    stats_df.loc[stats_df['season'].isin(seasons) & (stats_df['team_href'] == team_href)
+                            & stats_df['player_name'].isin(name_list),'player_href'] = match_list[0]
                     players_df.loc[players_df['player_name'].isin(name_list),'player_href'] = match_list[0]
             stats_df.loc[stats_df['season'].isin(seasons) & (stats_df['dedupe'] == 0) & (stats_df['team_href'] == team_href),'dedupe'] = 1
     return stats_df
@@ -432,7 +441,8 @@ def player_stats_scrape(min_season, current_date):
             else:
                 player_stats_df = pd.concat([stats_df,player_stats_df])
     
-    player_stats_df['pos_group'] = pd.merge(player_stats_df[['pos']], pos_group_df, how = 'left', on = 'pos')['pos_group']
+    player_stats_df = pd.merge(player_stats_df, pos_group_df, how = 'left', on = 'pos')
+    player_stats_df['pos_group'] = player_stats_df['pos_group'].fillna('unknwn')
     
     player_stats_df.loc[:,player_stats_df.columns[7:-2]] = player_stats_df.loc[:,player_stats_df.columns[7:-2]].fillna(0)
     player_stats_df = player_stats_df.drop_duplicates().reset_index(drop = True)
@@ -448,8 +458,8 @@ def player_stats_scrape(min_season, current_date):
         player_stats_df.set_value(index,'player_href','custom_href/' + re.sub(' ','-',row['player_name']) + '-' + str(i))
     player_stats_df.to_csv(cfbr_folder_path + 'cfbr_player_stats.csv', index = False)
     
-    if len(player_stats_df.loc[player_stats_df['dedupe'] == 0]) > 0:
-        dedupe_in = player_stats_df
+    dedupe_in = pd.read_csv(cfbr_folder_path + 'cfbr_player_stats.csv', header = 0)
+    if len(dedupe_in.loc[dedupe_in['dedupe'] == 0]) > 0:
         dedupe_out = player_stats_deduped(dedupe_in).drop_duplicates().reset_index(drop = True)
         dedupe_out.to_csv(cfbr_folder_path + 'cfbr_player_stats_dedupe.csv', index = False)
         
@@ -457,4 +467,4 @@ def player_stats_scrape(min_season, current_date):
         player_stats_df.to_csv(cfbr_folder_path + 'cfbr_player_stats.csv', index = False)
         return dedupe_out
     else:
-        return player_stats_df
+        return pd.read_csv(cfbr_folder_path + 'cfbr_player_stats_dedupe.csv', header = 0)
