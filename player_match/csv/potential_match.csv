@@ -1,0 +1,504 @@
+team_href,recruit_href,fuzzymatches,match_type
+https://247sports.com/college/ucla,/Player/Morrell-Osling-91028,"('mo osling', 80)",primary
+https://floridastate.247sports.com,/Player/Alexander-Marshall-75360,"[('alex marshall', 84), ('chandler marshall', 80)]",secondary
+https://auburn.247sports.com,/Player/Alaric-Williams-25041,"[('tre williams', 80), ('andrew williams', 73)]",both
+https://auburn.247sports.com,/Player/Kenney-Britt-84618,"('kj britt', 77)",primary
+https://247sports.com/college/miami,/Player/Jon-Ford-79592,"('jonathan ford', 76)",primary
+https://247sports.com/college/colorado,/Player/Jake-Moretti-75940,"('jacob moretti', 80)",primary
+https://247sports.com/college/ole-miss,/Player/JaVonta-Payton-89967,"('javon patterson', 76)",primary
+https://247sports.com/college/memphis,/Player/John-Dale-77875,"('john tate', 78)",primary
+https://247sports.com/college/memphis,/Player/Zay-Cullens-90589,"('xavier cullens', 78)",primary
+https://georgiatech.247sports.com,/Player/Michael-Minihan-93458,"('mikey minihan', 79)",primary
+https://247sports.com/college/arizona,/Player/Tony-Wallace-45572386,"[('antonio wallace', 81), ('jarrius wallace', 74)]",secondary
+https://louisville.247sports.com,/Player/Lyndarious-Strange-80723,"('lyn strange', 78)",primary
+https://247sports.com/college/oregon-state,/Player/Arex-Flemings-89999,"('champ flemings', 76)",primary
+https://247sports.com/college/baylor,/Player/DeMarco-Artis-80601,"('dj artis', 77)",primary
+https://247sports.com/college/minnesota,/Player/Jacob-Paulson-85317,"('jake paulson', 80)",primary
+https://247sports.com/college/colorado-state,/Player/EJ-Scott-84043,"('braylin scott', 77)",primary
+https://247sports.com/college/boston-college,/Player/Nathaniel-Emer-92444,"('nate emer', 78)",primary
+https://247sports.com/college/wake-forest,/Player/Michael-Allen-84270,"('mike allen', 78)",primary
+https://247sports.com/college/west-virginia,/Player/Eugene-Brown-86642,"('ej brown', 77)",primary
+https://247sports.com/college/marshall,/Player/Artis-Levias-46037772,"('armani levias', 80)",primary
+https://247sports.com/college/east-carolina,/Player/Tank-Robinson-75941,"('davondre robinson', 76)",primary
+https://247sports.com/college/buffalo,/Player/Jay-Harrison-81195,"('javarius harrison', 80)",primary
+https://247sports.com/college/louisiana-monroe,/Player/Joquarius-Savage-43468,"('joq savage', 77)",primary
+https://247sports.com/college/toledo,/Player/Jamal-Allen-87308,"('liam allen', 76)",primary
+https://temple.247sports.com,/Player/Dearage-Mason-94397,"('ty mason', 77)",primary
+https://247sports.com/college/eastern-michigan,/Player/Shaquille-Jones-29225,"('shaq jones', 80)",primary
+https://247sports.com/college/miamiohio,/Player/Michael-Brown-46038630,"('mike brown', 78)",primary
+https://247sports.com/college/ball-state,/Player/Jordan-Williams-46044206,"('grant williamson', 77)",primary
+https://247sports.com/college/army,/Player/Benjamin-Roth-46045431,"('ben roth', 76)",primary
+https://247sports.com/college/army,/Player/Joe-Wallace-89266,"('wallace barrett', 78)",primary
+https://247sports.com/college/fresno-state,/Player/TJ-Mauga-45572379,"('talalemotu mauga', 77)",primary
+https://247sports.com/college/fresno-state,/Player/Logan-Javernick-46037265,"('gunner javernick', 77)",primary
+https://247sports.com/college/tulane,/Player/Nicholas-Kubiet-89828,"('nick kubiet', 77)",primary
+https://247sports.com/college/massachusetts,/Player/Michael-Ruane-92699,"('mike ruane', 78)",primary
+https://247sports.com/college/navy,/Player/Jamale-Carothers-92233,"('paul carothers', 80)",primary
+https://247sports.com/college/navy,/Player/Tony-Brown-Jr-88977,"('john brown', 80)",primary
+https://247sports.com/college/navy,/Player/Jacob-Merchant-92361,"('elijah merchant', 76)",primary
+https://247sports.com/college/new-mexico,/Player/Case-Hampton-46037605,"('lon hampton', 78)",primary
+https://247sports.com/college/troy,/Player/ShonDerious-Sprallings-94363,"('shon spralling', 78)",primary
+https://247sports.com/college/utep,/Player/Cutter-Leftwich-46037802,"('mack leftwich', 76)",primary
+https://georgia.247sports.com,/Player/Mitchell-Wasson-84253,"('sony michel', 77)",primary
+https://auburn.247sports.com,/Player/Landon-Rice-30767,"('logan rice', 76)",primary
+https://247sports.com/college/california,/Player/Russell-Becker-85296,"('russell ude', 78)",primary
+https://247sports.com/college/usc,/Player/Jack-Jones-73103,"('jalen jones', 76)",primary
+https://247sports.com/college/penn-state,/Player/Zechariah-McPhearson-79577,"[('zech mcphearson', 86), ('josh mcphearson', 80)]",secondary
+https://247sports.com/college/notre-dame,/Player/Jamir-Jones-50194,"('jarron jones', 78)",primary
+https://247sports.com/college/minnesota,/Player/Mark-Williams-84522,"('everett williams', 76)",primary
+https://247sports.com/college/pittsburgh,/Player/Zack-Williams-35806,"('jalen williams', 76)",primary
+https://247sports.com/college/marshall,/Player/Shurod-Thompson-34640,"('gary thompson', 76)",primary
+https://247sports.com/college/south-carolina,/Player/Dennis-Wonnum-82919,"('dj wonnum', 80)",primary
+https://louisville.247sports.com,/Player/Chris-Williams-25085,"('chucky williams', 76)",primary
+https://247sports.com/college/utah,/Player/Johnny-Maea-79768,"('johnny capra', 78)",primary
+https://247sports.com/college/baylor,/Player/Micheal-Johnson-49429,"('miles johnson', 79)",primary
+https://247sports.com/college/north-carolina-state,/Player/Shug-Frazier-30417,"('ben frazier', 78)",primary
+https://iowa.247sports.com,/Player/Emmanuel-Rugamba-38016,"('manny rugamba', 76)",primary
+https://247sports.com/college/southern-methodist,/Player/MJ-Clark-23128,"('michael clark', 77)",primary
+https://247sports.com/college/syracuse,/Player/Devin-Butler-38608,"[('devin butler', 100), ('devin butler', 100)]",secondary
+https://247sports.com/college/syracuse,/Player/Devin-Butler-38608,"[('devin butler', 100), ('devin butler', 100)]",secondary
+https://247sports.com/college/syracuse,/Player/Devin-Butler-38608,"[('devin butler', 100), ('devin butler', 100)]",secondary
+https://247sports.com/college/syracuse,/Player/Michael-Clark-78615,"('mike clark', 78)",primary
+https://247sports.com/college/navy,/Player/Ramar-Williams-36679,"('sean williams', 76)",primary
+https://247sports.com/college/colorado-state,/Player/Domonique-Williams-41477,"('eric williams', 76)",primary
+https://247sports.com/college/fresno-state,/Player/Justin-Rice-80320,"('justin green', 78)",primary
+https://247sports.com/college/fresno-state,/Player/Juwuane-Hughes-83078,"('juju hughes', 80)",primary
+https://247sports.com/college/bowling-green,/Player/Tylen-Redding-82165,"[('ty redding', 87), ('teo redding', 83)]",secondary
+https://247sports.com/college/san-jose-state,/Player/Blake-Walls-36401,"('blake walker', 78)",primary
+https://247sports.com/college/charlotte,/Player/Benjamin-LeMay-23883,"('ben lemay', 78)",primary
+https://247sports.com/college/louisiana,/Player/Cody-Mitchell-79622,"('mustafa mitchell', 76)",primary
+https://247sports.com/college/nevada,/Player/Daquirae-Irby-85479,"('daq irby', 76)",primary
+https://247sports.com/college/miamiohio,/Player/Cameron-Turner-83503,"[('cam turner', 83), ('cameron petrie', 79)]",secondary
+https://247sports.com/college/tulsa,/Player/Manuel-Bunch-69942,"('manny bunch', 78)",primary
+https://247sports.com/college/air-force,/Player/Christian-McFarland-88619,"('christian mallard', 78)",primary
+https://247sports.com/college/air-force,/Player/Garrett-Collins-81556,"('garrett amy', 78)",primary
+https://247sports.com/college/akron,/Player/Jaleel-Davis-88799,"('jamal davis', 78)",primary
+https://247sports.com/college/purdue,/Player/Javonte-Ferguson-47652,"('eric ferguson', 76)",primary
+https://247sports.com/college/wyoming,/Player/Chandler-Garrett-75670,"('garrett gardner', 77)",primary
+https://247sports.com/college/appalachian-state,/Player/Matt-Williams-80729,"('mondo williams', 76)",primary
+https://247sports.com/college/north-texas,/Player/Joseph-Ozougwu-79027,"('jojo ozougwu', 77)",primary
+https://247sports.com/college/north-texas,/Player/William-Johnson-82066,"[('tillman johnson', 80), ('willie robinson', 73)]",both
+https://247sports.com/college/north-texas,/Player/Dontavious-Baulkman-19013,"('dee baulkman', 80)",primary
+https://247sports.com/college/army,/Player/Joseph-King-83929,"('joe king v', 76)",primary
+https://247sports.com/college/georgia-state,/Player/Kwon-Williams-38804,"('bryan williams', 76)",primary
+https://247sports.com/college/eastern-michigan,/Player/Justice-Williams-85001,"('ross williams', 76)",primary
+https://247sports.com/college/eastern-michigan,/Player/Mike-Smith-Jr-78881,"('michael smith', 78)",primary
+https://247sports.com/college/eastern-michigan,/Player/Mike-VanHoeven-81826,"('mike van hoeven', 76)",primary
+https://247sports.com/college/ole-miss,/Player/Joe-Anderson-37310,"('justin anderson', 80)",primary
+https://247sports.com/college/texas-tech,/Player/JF-Thomas-36214,"[('thomas leggett', 80), ('poet thomas', 80)]",both
+https://247sports.com/college/south-carolina,/Player/Octavis-Johnson-32105,"('david johnson', 79)",primary
+https://247sports.com/college/virginia,/Player/Christopher-Sharp-48074,"('chris sharp', 79)",primary
+https://kentucky.247sports.com,/Player/Tavin-Richardson-15471,"('nick richardson', 80)",primary
+https://iowa.247sports.com,/Player/Jacob-Newborg-34983,"('jake newborg', 80)",primary
+https://247sports.com/college/northwestern,/Player/Jacob-Murray-37036,"('jake murray', 78)",primary
+https://247sports.com/college/bowling-green,/Player/CJ-Lamar-26819,"('charles lamar', 77)",primary
+https://247sports.com/college/boston-college,/Player/William-Harris-35554,"[('william harris', 100), ('harris williams', 97)]",secondary
+https://247sports.com/college/boston-college,/Player/William-Harris-35554,"[('william harris', 100), ('harris williams', 97)]",secondary
+https://247sports.com/college/boston-college,/Player/William-Harris-35554,"[('william harris', 100), ('harris williams', 97)]",secondary
+https://247sports.com/college/navy,/Player/Jackson-Pittman-33270,"('jordan pittman', 76)",primary
+https://247sports.com/college/navy,/Player/Robbie-Armstrong-66387,"('monte armstrong', 77)",primary
+https://247sports.com/college/purdue,/Player/Michael-Little-31656,"('mike little', 80)",primary
+https://247sports.com/college/marshall,/Player/Von-Davis-30702,"('keion davis', 80)",primary
+https://247sports.com/college/tulane,/Player/Darius-Williams-25720,"('edward williams', 80)",primary
+https://247sports.com/college/western-kentucky,/Player/Nick-Coffey-75076,"('nicholas coffey', 77)",primary
+https://247sports.com/college/massachusetts,/Player/Michael-Yerardi-75696,"[('mike yerardi', 81), ('michael dowe', 74)]",secondary
+https://247sports.com/college/army,/Player/Jalen-Nash-24126,"('jalen sharp', 76)",primary
+https://247sports.com/college/army,/Player/T-J-Jackson-76227,"('brandon jackson', 78)",primary
+https://247sports.com/college/army,/Player/Tank-Scott-78531,"('scott flanick', 78)",primary
+https://247sports.com/college/army,/Player/Mike-Johnson-78256,"[('michael johnson', 81), ('samuel johnson', 77)]",secondary
+https://247sports.com/college/central-michigan,/Player/Michael-Danna-69202,"('mike danna', 78)",primary
+https://247sports.com/college/colorado-state,/Player/Isaiah-Matthews-70337,"('izzy matthews', 76)",primary
+https://247sports.com/college/charlotte,/Player/Jonathan-Hardy-78869,"('jon hardy', 78)",primary
+https://247sports.com/college/texas-san-antonio,/Player/Kelvin-Williams-78198,"('shaq williams', 76)",primary
+https://247sports.com/college/idaho,/Player/Jace-Malek-79170,"('jake manley', 76)",primary
+https://247sports.com/college/georgia-state,/Player/Dom-Roldan-77954,"('dominique roldan', 77)",primary
+https://247sports.com/college/lsu,/Player/Donnie-Alexander-22550,"[('kwon alexander', 80), ('vadal alexander', 75)]",both
+https://247sports.com/college/michigan,/Player/Michael-Ferns-19294,"('michael sessa', 77)",primary
+https://247sports.com/college/virginia,/Player/Jacob-Fieler-37624,"('jake fieler', 78)",primary
+https://247sports.com/college/usc,/Player/Lamont-Simmons-32764,"[('delvon simmons', 79), ('jordan simmons', 71)]",both
+https://georgia.247sports.com,/Player/Shaquille-Jones-29225,"('shaq jones', 80)",primary
+https://247sports.com/college/ole-miss,/Player/Ken-Webster-25076,"('kendarius webster', 79)",primary
+https://247sports.com/college/washington,/Player/Lavon-Washington-32559,"('dwayne washington', 79)",primary
+https://kentucky.247sports.com,/Player/CJ-Johnson-3119,"[('zach johnson', 82), ('cory johnson', 82)]",secondary
+https://247sports.com/college/northwestern,/Player/Nathan-Hall-21802,"('nate hall', 80)",primary
+https://247sports.com/college/west-virginia,/Player/Jaylon-Myers-34655,"('kj myers', 77)",primary
+https://247sports.com/college/pittsburgh,/Player/Michael-Grimm-24349,"('mike grimm', 78)",primary
+https://247sports.com/college/pittsburgh,/Player/Michael-Herndon-27083,"[('mike herndon', 81), ('michael dunn', 74)]",secondary
+https://247sports.com/college/pittsburgh,/Player/Hezekiah-Trahan-35564,"('hez trahan', 80)",primary
+https://indiana.247sports.com,/Player/Waynedriko-Smith-26233,"('ty smith', 77)",primary
+https://247sports.com/college/utah,/Player/Marcus-Williams-30989,"[('marcus sanders-williams', 100), ('marcus williams', 100)]",secondary
+https://247sports.com/college/utah,/Player/Marcus-Williams-30989,"[('marcus sanders-williams', 100), ('marcus williams', 100)]",secondary
+https://247sports.com/college/utah,/Player/Marcus-Williams-30989,"[('marcus sanders-williams', 100), ('marcus williams', 100)]",secondary
+https://nebraska.247sports.com,/Player/Monte-Harrison-26287,"('harrison jordan', 76)",primary
+https://247sports.com/college/marshall,/Player/Fedrice-Binot-40259,"('fred binot', 78)",primary
+https://247sports.com/college/texas-tech,/Player/Dominique-Robertson-31711,"('pete robertson', 78)",primary
+https://temple.247sports.com,/Player/Lenny-Williams-20967,"[('avery williams', 79), ('travon williams', 73)]",both
+https://247sports.com/college/wake-forest,/Player/Kameron-Uter-36413,"('tyler cameron', 80)",primary
+https://247sports.com/college/florida-atlantic,/Player/Jerry-Jones-13940,"('jake jones', 76)",primary
+https://247sports.com/college/louisiana,/Player/Anthony-Jones-25459,"('anthony jennings', 76)",primary
+https://247sports.com/college/louisiana,/Player/Malik-Williams-40673,"('jamarius williams', 77)",primary
+https://247sports.com/college/memphis,/Player/Carlos-Williams-40617,"[('omar williams', 79), ('adam williams', 76)]",both
+https://247sports.com/college/san-diego-state,/Player/PJ-Walker-31308,"('jimmy walker', 80)",primary
+https://247sports.com/college/san-diego-state,/Player/Alex-Anderson-34685,"('curtis anderson', 76)",primary
+https://247sports.com/college/colorado-state,/Player/Jalen-Williams-40708,"('xavier williams', 76)",primary
+https://247sports.com/college/nevada,/Player/Jacob-Lacaden-34099,"('jake lacaden', 80)",primary
+https://247sports.com/college/houston,/Player/Tarrin-Mitchell-23390,"('davion mitchell', 80)",primary
+https://247sports.com/college/tulane,/Player/RaeJuan-Marbley-16980,"('rae juan marbley', 77)",primary
+https://247sports.com/college/middle-tennessee-state,/Player/AJ-Wells-24311,"('ykeem wells', 77)",primary
+https://247sports.com/college/north-texas,/Player/Christopher-Miles-28638,"('chris miles', 79)",primary
+https://247sports.com/college/north-texas,/Player/Shaquel-Jackson-28833,"('rashad jackson', 76)",primary
+https://247sports.com/college/north-texas,/Player/Akii-Smith-35535,"('aj smith', 78)",primary
+https://247sports.com/college/new-mexico,/Player/Juwan-Jones-30993,"('javohn jones', 78)",primary
+https://247sports.com/college/ball-state,/Player/Jake-McPhatter-38168,"('lamont mcphatter', 78)",primary
+https://247sports.com/college/arkansas-state,/Player/Brandon-Byner-26418,"('brandon cox', 78)",primary
+https://247sports.com/college/utah-state,/Player/Chris-Unga-38973,"('christopher unga', 77)",primary
+https://247sports.com/college/wyoming,/Player/Joshua-Stanton-34339,"('jordan stanton', 79)",primary
+https://247sports.com/college/troy,/Player/TaJarvis-Fuller-7805,"('tj fuller', 80)",primary
+https://247sports.com/college/ole-miss,/Player/Davion-Johnson-15640,"[('cj johnson', 82), ('martin johnson', 79)]",secondary
+https://ohiostate.247sports.com,/Player/Mike-Mitchell-13642,"('kato mitchell', 77)",primary
+https://247sports.com/college/clemson,/Player/Ryan-Carter-20378,"[('ryan carter', 100), ('ryan carter', 100)]",secondary
+https://247sports.com/college/clemson,/Player/Ryan-Carter-20378,"[('ryan carter', 100), ('ryan carter', 100)]",secondary
+https://247sports.com/college/clemson,/Player/Ryan-Carter-20378,"[('ryan carter', 100), ('ryan carter', 100)]",secondary
+https://247sports.com/college/texas,/Player/Desmond-Harrison-21439,"('desmond jackson', 77)",primary
+https://247sports.com/college/arkansas,/Player/Austin-Boice-28940,"('austin beck', 78)",primary
+https://247sports.com/college/south-carolina,/Player/Devin-Washington-15989,"('michael washington', 77)",primary
+https://michiganstate.247sports.com,/Player/Justin-Williams-20300,"('kevin williams', 76)",primary
+https://247sports.com/college/rutgers,/Player/Lester-Liston-10995,"('lj liston', 80)",primary
+https://indiana.247sports.com,/Player/Kristopher-Smith-15977,"('ty smith', 77)",primary
+https://247sports.com/college/cincinnati,/Player/Rasheen-Jones-14906,"('ryan jones', 78)",primary
+https://247sports.com/college/cincinnati,/Player/Javon-Harrison-15498,"('mason garrison', 79)",primary
+https://247sports.com/college/fresno-state,/Player/Patrick-Kim-26806,"('patrick williams', 78)",primary
+https://247sports.com/college/east-carolina,/Player/Lucas-Thompson-9601,"('chip thompson', 76)",primary
+https://247sports.com/college/east-carolina,/Player/Terrell-Lane-28536,"[('terrell stanley', 81), ('terrell richardson', 74)]",secondary
+https://247sports.com/college/utah,/Player/Marcus-Sanders-Williams-46047923,"[('marcus sanders-williams', 100), ('marcus williams', 100)]",secondary
+https://247sports.com/college/utah,/Player/Marcus-Sanders-Williams-46047923,"[('marcus sanders-williams', 100), ('marcus williams', 100)]",secondary
+https://247sports.com/college/utah,/Player/Marcus-Sanders-Williams-46047923,"[('marcus sanders-williams', 100), ('marcus williams', 100)]",secondary
+https://247sports.com/college/colorado,/Player/Tim-Coleman-28021,"[('timothy coleman', 85), ('derek coleman', 78)]",secondary
+https://247sports.com/college/south-alabama,/Player/Brett-Sheehan-20824,"('sean barrette', 77)",primary
+https://247sports.com/college/south-alabama,/Player/Tyrell-Vinson-28875,"[('dj vinson', 80), ('tyree vines', 75)]",both
+https://247sports.com/college/north-carolina-state,/Player/Quinton-Patterson-15803,"('quintin payton', 77)",primary
+https://247sports.com/college/massachusetts,/Player/Donnice-Woods-10357,"('dj woods', 77)",primary
+https://247sports.com/college/unlv,/Player/Charles-Spencer-26001,"('charles henry', 79)",primary
+https://247sports.com/college/central-florida,/Player/Jake-Berman-21878,"('jake brown', 76)",primary
+https://247sports.com/college/southern-mississippi,/Player/Fred-Moore-9772,"('frederick moore', 80)",primary
+https://247sports.com/college/southern-mississippi,/Player/Aaron-Reed-22828,"[('kalan reed', 80), ('jarell aaron', 73)]",both
+https://247sports.com/college/syracuse,/Player/Alexander-Hayes-14709,"('alex hayes', 80)",primary
+https://247sports.com/college/syracuse,/Player/Aaron-Batten-23343,"('pj batten', 80)",primary
+https://247sports.com/college/syracuse,/Player/Jonathan-Burton-28459,"('jon burton', 80)",primary
+https://247sports.com/college/wake-forest,/Player/Josh-Harris-17425,"[('josh t harris', 100), ('josh harris', 100)]",secondary
+https://247sports.com/college/wake-forest,/Player/Josh-Harris-17425,"[('josh t harris', 100), ('josh harris', 100)]",secondary
+https://247sports.com/college/wake-forest,/Player/Josh-Harris-17425,"[('josh t harris', 100), ('josh harris', 100)]",secondary
+https://247sports.com/college/miamiohio,/Player/Terry-Williams-21910,"[('tj williams', 84), ('wes williams', 80)]",secondary
+https://247sports.com/college/florida-atlantic,/Player/Robert-Miller-23154,"('conner miller', 77)",primary
+https://247sports.com/college/charlotte,/Player/Nicholas-Halmon-27267,"('nick halmon', 77)",primary
+https://247sports.com/college/ball-state,/Player/Nick-Isaacs-21987,"('nicholas isaacs', 77)",primary
+https://247sports.com/college/ball-state,/Player/PJ-Scott-28219,"('efe scott-emuakpor', 77)",primary
+https://247sports.com/college/florida-international,/Player/Christopher-Flaig-17415,"('chris flaig', 79)",primary
+https://247sports.com/college/alabama-birmingham,/Player/Justin-Green-22647,"('jj green', 77)",primary
+https://247sports.com/college/alabama-birmingham,/Player/JeNiah-Jackson-10922,"('nick jackson', 77)",primary
+https://247sports.com/college/troy,/Player/Jalen-Daniels-28965,"('daniel warren', 77)",primary
+https://247sports.com/college/ohio,/Player/Tyree-Graves-23384,"('taylor graves', 80)",primary
+https://247sports.com/college/missouri,/Player/Jordan-Williams-13541,"('jordan hill', 77)",primary
+https://floridastate.247sports.com,/Player/Mario-Edwards-280,"[('mario edwards', 100), ('mario edwards', 100)]",secondary
+https://floridastate.247sports.com,/Player/Mario-Edwards-280,"[('mario edwards', 100), ('mario edwards', 100)]",secondary
+https://floridastate.247sports.com,/Player/Mario-Edwards-280,"[('mario edwards', 100), ('mario edwards', 100)]",secondary
+https://247sports.com/college/texas,/Player/Malcom-Brown-1788,"[('malcom brown', 100), ('malcolm brown', 96)]",secondary
+https://247sports.com/college/texas,/Player/Malcom-Brown-1788,"[('malcom brown', 100), ('malcolm brown', 96)]",secondary
+https://247sports.com/college/texas,/Player/Malcom-Brown-1788,"[('malcom brown', 100), ('malcolm brown', 96)]",secondary
+https://247sports.com/college/alabama,/Player/Eddie-Williams-2298,"[('jesse williams', 79), ('jarrick williams', 73)]",both
+https://247sports.com/college/stanford,/Player/Nathanael-Lohn-10843,"('nate lohn', 78)",primary
+https://247sports.com/college/clemson,/Player/Oliver-Jones-454,"('cj jones', 77)",primary
+https://247sports.com/college/oklahoma,/Player/Michael-Onuoha-17429,"('mike onuoha', 80)",primary
+https://247sports.com/college/wisconsin,/Player/Reggie-Mitchell-13718,"('mitchell herl', 76)",primary
+https://247sports.com/college/southern-mississippi,/Player/Calvin-Perry-15212,"('cj perry', 77)",primary
+https://247sports.com/college/utah,/Player/Reggie-Porter-17458,"[('reginald porter', 79), ('reggie dunn', 71)]",both
+https://247sports.com/college/vanderbilt,/Player/Jacob-Sealand-9502,"('jake sealand', 80)",primary
+https://247sports.com/college/new-mexico-state,/Player/Dominique-Love-12813,"('dominique houston', 78)",primary
+https://northcarolina.247sports.com,/Player/Tyreece-Jiles-11494,"('tj jiles', 77)",primary
+https://kentucky.247sports.com,/Player/Jonathan-Reed-7372,"('jonathan george', 79)",primary
+https://kentucky.247sports.com,/Player/TJ-Jones-13548,"('cody jones', 77)",primary
+https://247sports.com/college/toledo,/Player/Phillip-Martin-14435,"('phillip ely', 78)",primary
+https://247sports.com/college/tulane,/Player/Walker-Van-Hooser-9476,"('wilson van hooser', 76)",primary
+https://247sports.com/college/western-michigan,/Player/Ben-Davisson-3128,"('terry davisson', 80)",primary
+https://247sports.com/college/cincinnati,/Player/DeShawn-Dowdy-13790,"('dj dowdy', 77)",primary
+https://247sports.com/college/illinois,/Player/Robert-Bain-11048,"[('robbie bain', 82), ('brandon roberts', 77)]",secondary
+https://247sports.com/college/uconn,/Player/Jonathan-Hicks-8540,"('jon hicks', 78)",primary
+https://247sports.com/college/fresno-state,/Player/Jerry-Smith-17952,"('derron smith', 78)",primary
+https://247sports.com/college/louisiana,/Player/Christian-Hill-11027,"[('chris hill', 83), ('christian ringo', 78)]",secondary
+https://247sports.com/college/unlv,/Player/David-Greene-408,"[('david greene', 100), ('david green', 96)]",secondary
+https://247sports.com/college/unlv,/Player/David-Greene-408,"[('david greene', 100), ('david green', 96)]",secondary
+https://247sports.com/college/unlv,/Player/David-Greene-408,"[('david greene', 100), ('david green', 96)]",secondary
+https://247sports.com/college/navy,/Player/Ken-Mouton-17760,"[('kenneth mouton', 83), ('kendrick mouton', 80)]",secondary
+https://247sports.com/college/navy,/Player/CJ-Williams-2016,"[('khaylan williams', 84), ('sean williams', 84)]",secondary
+https://247sports.com/college/utep,/Player/Terrence-Williams-12776,"('xay williams', 80)",primary
+https://247sports.com/college/air-force,/Player/Christian-Hauber-15536,"('christian gann', 78)",primary
+https://247sports.com/college/south-alabama,/Player/Terrance-Jones-7157,"[('terrance timmons', 80), ('terrance slaughter', 73)]",both
+https://247sports.com/college/idaho,/Player/Andrew-Williams-17105,"[('trey williams', 79), ('cole williams', 76)]",both
+https://247sports.com/college/colorado-state,/Player/Daniel-Nwosu-10309,"('danny nwosu', 78)",primary
+https://247sports.com/college/troy,/Player/Braylon-Williams-17988,"[('aaron williams', 80), ('bryan willis', 79)]",both
+https://247sports.com/college/middle-tennessee-state,/Player/Shaq-Huff-10902,"('shaquille huff', 78)",primary
+https://247sports.com/college/rice,/Player/Justin-Carter-11961,"('jayson carter', 77)",primary
+https://247sports.com/college/alabama,/Player/Corey-Grant-1404,"('bo grant', 77)",primary
+https://247sports.com/college/lsu,/Player/Trevon-Randle-2478,"('rueben randle', 77)",primary
+https://floridastate.247sports.com,/Player/Jake-Coker-7267,"('jacob coker', 76)",primary
+https://floridastate.247sports.com,/Player/Ruben-Carter-902,"('trey carter', 78)",primary
+https://auburn.247sports.com,/Player/Jonathan-Rose-440,"('jonathan parslow', 76)",primary
+https://247sports.com/college/texas,/Player/Malcolm-Brown-2072,"[('malcolm brown', 100), ('malcolm brown', 100)]",secondary
+https://247sports.com/college/texas,/Player/Malcolm-Brown-2072,"[('malcolm brown', 100), ('malcolm brown', 100)]",secondary
+https://247sports.com/college/texas,/Player/Malcolm-Brown-2072,"[('malcolm brown', 100), ('malcolm brown', 100)]",secondary
+https://247sports.com/college/clemson,/Player/Spencer-Region-495,"('spencer benton', 79)",primary
+https://247sports.com/college/miami,/Player/Ricardo-Williams-694,"('ryan williams', 76)",primary
+https://247sports.com/college/washington,/Player/Jamaal-Jones-8655,"('jamon jones', 78)",primary
+https://michiganstate.247sports.com,/Player/Andre-Sims-836,"[('andre sims', 100), ('andre sims', 100)]",secondary
+https://michiganstate.247sports.com,/Player/Andre-Sims-836,"[('andre sims', 100), ('andre sims', 100)]",secondary
+https://michiganstate.247sports.com,/Player/Andre-Sims-836,"[('andre sims', 100), ('andre sims', 100)]",secondary
+https://247sports.com/college/california,/Player/Matt-Williams-8086,"('steve williams', 76)",primary
+https://247sports.com/college/texas-tech,/Player/LaDarrin-Robertson-635,"('pete robertson', 78)",primary
+https://247sports.com/college/pittsburgh,/Player/Steve-Williams-9570,"('eric williams', 76)",primary
+https://iowa.247sports.com,/Player/Nicholas-Law-2112,"('nico law', 80)",primary
+https://georgiatech.247sports.com,/Player/Shaq-Mason-7150,"('shaquille mason', 80)",primary
+https://247sports.com/college/south-florida,/Player/Chris-Garye-Jr-2094,"('cj garye', 77)",primary
+https://247sports.com/college/central-florida,/Player/Mike-Easton-8759,"('michael easton', 80)",primary
+https://247sports.com/college/toledo,/Player/JD-Detmer-8865,"('jeremiah detmer', 80)",primary
+https://247sports.com/college/toledo,/Player/Matt-Neal-8899,"('matt wall', 78)",primary
+https://247sports.com/college/colorado,/Player/Sherrard-Harrington-8774,"('evan harrington', 80)",primary
+https://247sports.com/college/houston,/Player/Dominic-Smith-9652,"('ej smith', 77)",primary
+https://247sports.com/college/washington-state,/Player/Alex-Mitchell-3718,"[('mitchell cox', 80), ('mitchell peterson', 76)]",both
+https://247sports.com/college/iowa-state,/Player/Sam-Richardson-8996,"[('sam b richardson', 100), ('sam e richardson', 100)]",secondary
+https://247sports.com/college/iowa-state,/Player/Sam-Richardson-8387,"[('sam b richardson', 100), ('sam e richardson', 100)]",secondary
+https://247sports.com/college/iowa-state,/Player/Sam-Richardson-8996,"[('sam b richardson', 100), ('sam e richardson', 100)]",secondary
+https://247sports.com/college/iowa-state,/Player/Sam-Richardson-8387,"[('sam b richardson', 100), ('sam e richardson', 100)]",secondary
+https://247sports.com/college/iowa-state,/Player/Sam-Richardson-8996,"[('sam b richardson', 100), ('sam e richardson', 100)]",secondary
+https://247sports.com/college/iowa-state,/Player/Sam-Richardson-8387,"[('sam b richardson', 100), ('sam e richardson', 100)]",secondary
+https://247sports.com/college/arkansas-state,/Player/Aaron-Williams-9983,"('sawyer williams', 76)",primary
+https://247sports.com/college/arkansas-state,/Player/James-Williams-9986,"('sawyer williams', 76)",primary
+https://247sports.com/college/navy,/Player/Bernie-Sarra-9444,"('bernard sarra', 80)",primary
+https://247sports.com/college/navy,/Player/Jimmy-Britton-9430,"('james britton', 77)",primary
+https://247sports.com/college/navy,/Player/Michael-Mey-9440,"('michael raiford', 78)",primary
+https://247sports.com/college/central-michigan,/Player/Josh-Carter-9674,"('john carr', 80)",primary
+https://247sports.com/college/unlv,/Player/David-Green-9888,"[('david green', 100), ('david greene', 96)]",secondary
+https://247sports.com/college/unlv,/Player/David-Green-9888,"[('david green', 100), ('david greene', 96)]",secondary
+https://247sports.com/college/unlv,/Player/David-Green-9888,"[('david green', 100), ('david greene', 96)]",secondary
+https://247sports.com/college/bowling-green,/Player/Dominique-Wharton-8805,"('dominique carter', 79)",primary
+https://temple.247sports.com,/Player/CJ-Johnson-3119,"[('kamal johnson', 82), ('zamel johnson', 82)]",secondary
+https://temple.247sports.com,/Player/Tyrone-Harris-9154,"('montel harris', 77)",primary
+https://247sports.com/college/akron,/Player/John-Clay-3045,"('john lako', 78)",primary
+https://247sports.com/college/akron,/Player/James-Price-9984,"('cj james', 77)",primary
+https://247sports.com/college/troy,/Player/DJ-Johnson-9862,"[('keith johnson', 82), ('robert johnson', 82)]",secondary
+https://247sports.com/college/south-alabama,/Player/Devin-Robinson-27176,"('john robinson', 76)",primary
+https://247sports.com/college/idaho,/Player/AJ-Jones-9392,"('emmanuel jones', 77)",primary
+https://247sports.com/college/san-jose-state,/Player/Nathan-Falo-9600,"('nate falo', 80)",primary
+https://247sports.com/college/miamiohio,/Player/Chris-Dever-3101,"('chris wade', 76)",primary
+https://247sports.com/college/nevada,/Player/Bryan-Lane-9406,"[('bryan lane', 100), ('bryan lane', 100)]",secondary
+https://247sports.com/college/nevada,/Player/Bryan-Lane-9406,"[('bryan lane', 100), ('bryan lane', 100)]",secondary
+https://247sports.com/college/nevada,/Player/Bryan-Lane-9406,"[('bryan lane', 100), ('bryan lane', 100)]",secondary
+https://247sports.com/college/florida-atlantic,/Player/Javaris-Giles-9032,"('jarvis givens', 77)",primary
+https://247sports.com/college/louisiana-tech,/Player/Oscar-Johnson-8917,"('craig johnson', 77)",primary
+https://247sports.com/college/louisiana-tech,/Player/Larry-Banks-9255,"('dj banks', 77)",primary
+https://247sports.com/college/army,/Player/Brent-Stout-9587,"('brett toth', 76)",primary
+https://247sports.com/college/army,/Player/Jonathan-Lehman-9582,"('johnathan lay', 79)",primary
+https://247sports.com/college/texas-san-antonio,/Player/Troy-Williams-2745,"('shaq williams', 76)",primary
+https://247sports.com/college/new-mexico-state,/Player/Tre-Colwell-9361,"('travaughn colwell', 78)",primary
+https://247sports.com/college/new-mexico-state,/Player/Alex-Lavoy-9369,"('alexander lavoy', 80)",primary
+https://247sports.com/college/miami,/Player/Travis-Williams-3856,"[('ryan williams', 79), ('mike williams', 76)]",both
+https://247sports.com/college/texas,/Player/Adrian-White-1421,"('aj white', 77)",primary
+https://247sports.com/college/south-carolina,/Player/Tramell-Williams-2699,"('drew williams', 76)",primary
+https://247sports.com/college/alabama,/Player/Jay-Williams-2464,"[('michael williams', 80), ('chavis williams', 80)]",both
+https://247sports.com/college/texas-am,/Player/Toney-Hurd-Jr-3521,"[('toney hurd', 100), ('toney hurd', 100)]",secondary
+https://247sports.com/college/texas-am,/Player/Toney-Hurd-Jr-3521,"[('toney hurd', 100), ('toney hurd', 100)]",secondary
+https://247sports.com/college/texas-am,/Player/Toney-Hurd-Jr-3521,"[('toney hurd', 100), ('toney hurd', 100)]",secondary
+https://247sports.com/college/texas-am,/Player/Mister-Jones-3525,"('cj jones', 77)",primary
+https://247sports.com/college/oklahoma,/Player/James-Haynes-3475,"('james hanna', 78)",primary
+https://247sports.com/college/lsu,/Player/Jarrett-Fobbs-2631,"('jarrett lee', 78)",primary
+https://247sports.com/college/lsu,/Player/Ken-Adams-2613,"('kendrick adams', 78)",primary
+https://247sports.com/college/penn-state,/Player/Thomas-Ricketts-1758,"('derrick thomas', 76)",primary
+https://247sports.com/college/penn-state,/Player/Luke-Graham-2986,"('graham zug', 76)",primary
+https://247sports.com/college/oklahoma-state,/Player/Gerron-Anthony-3486,"[('anthony rogers', 79), ('anthony hill', 74)]",both
+https://247sports.com/college/washington,/Player/Brent-Williams-3700,"('nate williams', 76)",primary
+https://georgiatech.247sports.com,/Player/Barry-Bostic-5896,"('bj bostic', 80)",primary
+https://247sports.com/college/colorado,/Player/Alex-Lewis-3341,"('alexander lewis', 80)",primary
+https://247sports.com/college/rutgers,/Player/Rob-Forst-58501,"('art forst', 78)",primary
+https://247sports.com/college/florida-international,/Player/Bryan-Robinson-6451,"('alex robinson', 76)",primary
+https://247sports.com/college/purdue,/Player/Michael-Eargle-58494,"('mike eargle', 80)",primary
+https://247sports.com/college/oregon-state,/Player/Donnell-Welch-3630,"('dj welch', 77)",primary
+https://247sports.com/college/illinois,/Player/DJ-Woods-5656,"('dejazz woods', 80)",primary
+https://247sports.com/college/southern-mississippi,/Player/OC-Brown-4393,"('deandre brown', 77)",primary
+https://247sports.com/college/colorado-state,/Player/Najee-James-6252,"('cj james', 77)",primary
+https://247sports.com/college/colorado-state,/Player/James-Boone-4558,"('cj james', 77)",primary
+https://247sports.com/college/colorado-state,/Player/Shaquille-Bell-4556,"('shaq bell', 78)",primary
+https://247sports.com/college/colorado-state,/Player/Josh-James-58891,"('cj james', 78)",primary
+https://247sports.com/college/virginia,/Player/Mike-Rocco-58591,"('michael rocco', 78)",primary
+https://247sports.com/college/southern-methodist,/Player/Michael-OGuin-4386,"('mike oguin', 78)",primary
+https://247sports.com/college/southern-methodist,/Player/Ricky-Collins-4365,"('bryan collins', 77)",primary
+https://247sports.com/college/akron,/Player/Lawrence-Smith-3983,"('lt smith', 77)",primary
+https://247sports.com/college/akron,/Player/ElRico-Jones-3975,"('dj jones', 77)",primary
+https://247sports.com/college/east-carolina,/Player/Jake-Geary-4257,"('jacob geary', 76)",primary
+https://247sports.com/college/louisiana-tech,/Player/Ryan-Zeller-6703,"('ryan allen', 76)",primary
+https://247sports.com/college/toledo,/Player/Phillip-Lewis-58671,"('phillip ely', 78)",primary
+https://247sports.com/college/alabama-birmingham,/Player/Darnell-Williams-4482,"('darius williams', 77)",primary
+https://247sports.com/college/northern-illinois,/Player/Tyler-Anderson-4137,"('zach anderson', 76)",primary
+https://247sports.com/college/central-michigan,/Player/Michael-Kinville-4060,"[('mike kinville', 83), ('joe kinville', 80)]",secondary
+https://247sports.com/college/wyoming,/Player/Evan-Williams-6392,"('stuart williams', 76)",primary
+https://247sports.com/college/florida-atlantic,/Player/Tony-Moore-6468,"[('tony moore', 100), ('toney moore', 95)]",secondary
+https://247sports.com/college/florida-atlantic,/Player/Tony-Moore-6468,"[('tony moore', 100), ('toney moore', 95)]",secondary
+https://247sports.com/college/florida-atlantic,/Player/Tony-Moore-6468,"[('tony moore', 100), ('toney moore', 95)]",secondary
+https://247sports.com/college/idaho,/Player/Demetrius-Williams-6684,"('trey williams', 76)",primary
+https://247sports.com/college/utah-state,/Player/Alex-Hart-6781,"('alex huerta', 80)",primary
+https://247sports.com/college/army,/Player/Richard-Rainey-58745,"('richard king', 77)",primary
+https://247sports.com/college/ohio,/Player/Anthony-Grady-Jr-4168,"('aj grady', 77)",primary
+https://247sports.com/college/middle-tennessee-state,/Player/Isaiah-Anderson-27925,"('zeke anderson', 76)",primary
+https://247sports.com/college/usc,/Player/Jake-Harfman-27355,"('jacob harfman', 80)",primary
+https://247sports.com/college/alabama,/Player/Darius-McKeller-23780,"('marcell dareus', 76)",primary
+https://florida.247sports.com,/Player/Jon-Bostic-4789,"('jonathan bostic', 80)",primary
+https://247sports.com/college/ole-miss,/Player/Terrell-Grant-57040,"('terrell brown', 77)",primary
+https://oregon.247sports.com,/Player/Nick-Cole-28404,"('nick cody', 78)",primary
+https://247sports.com/college/rutgers,/Player/Robert-Joseph-28681,"('robert jones', 80)",primary
+https://247sports.com/college/rutgers,/Player/David-Osei-28685,"('david rowe', 80)",primary
+https://247sports.com/college/oklahoma-state,/Player/Brandon-Webb-28498,"('brandon weeden', 77)",primary
+https://iowa.247sports.com,/Player/Jake-Reisen-30765,"('jacob reisen', 78)",primary
+https://247sports.com/college/oregon-state,/Player/Michael-Beaton-30077,"('michael balfour', 76)",primary
+https://247sports.com/college/california,/Player/Charles-Ragland-29187,"('charles amadi', 79)",primary
+https://nebraska.247sports.com,/Player/Chris-Williams-28271,"('josh williams', 76)",primary
+https://247sports.com/college/texas-tech,/Player/Brandon-Mahoney-23700,"('brandon bagley', 76)",primary
+https://247sports.com/college/texas-tech,/Player/Yahshua-Williams-28425,"('matt williams', 76)",primary
+https://georgiatech.247sports.com,/Player/Raymond-Beno-5894,"('ray beno', 80)",primary
+https://247sports.com/college/fresno-state,/Player/Donnie-Pritchett-35694,"('donavaughn pritchett', 78)",primary
+https://247sports.com/college/fresno-state,/Player/Pat-Sua-35698,"('patrick sua', 78)",primary
+https://247sports.com/college/north-carolina-state,/Player/Morgan-Alexander-29869,"('deandre morgan', 80)",primary
+https://247sports.com/college/ohio,/Player/Sam-Johnson-58355,"('jake johnson', 78)",primary
+https://247sports.com/college/purdue,/Player/Eric-Williams-57163,"[('torri williams', 81), ('walter williams', 79)]",secondary
+https://247sports.com/college/louisiana-tech,/Player/John-White-57453,"('john hinton', 76)",primary
+https://247sports.com/college/southern-methodist,/Player/James-Scott-57076,"('jay scott', 80)",primary
+https://247sports.com/college/troy,/Player/Mike-Robinson-30456,"('jaquon robinson', 76)",primary
+https://247sports.com/college/alabama-birmingham,/Player/Danny-White-57211,"('daniel white', 78)",primary
+https://247sports.com/college/central-michigan,/Player/Eric-Fisher-31097,"[('eric fraser', 82), ('cedric fraser', 75)]",secondary
+https://247sports.com/college/washington-state,/Player/Terrell-Thompson-35764,"('tony thompson', 76)",primary
+https://247sports.com/college/iowa-state,/Player/Walter-Woods-36000,"[('walter woods', 100), ('walter woods', 100)]",secondary
+https://247sports.com/college/iowa-state,/Player/Walter-Woods-36000,"[('walter woods', 100), ('walter woods', 100)]",secondary
+https://247sports.com/college/iowa-state,/Player/Walter-Woods-36000,"[('walter woods', 100), ('walter woods', 100)]",secondary
+https://247sports.com/college/boise-state,/Player/John-Michael-Davis-23699,"('michael akinson', 79)",primary
+https://247sports.com/college/akron,/Player/Grant-Williams-57788,"[('aaron williams', 79), ('dalton williams', 76)]",both
+https://247sports.com/college/akron,/Player/David-Anderson-57684,"('jake anderson', 76)",primary
+https://247sports.com/college/new-mexico,/Player/Darryl-Johnson-57519,"('daryl jones', 80)",primary
+https://247sports.com/college/kent-state,/Player/Jacob-Dooley-58299,"('jake dooley', 78)",primary
+https://247sports.com/college/wyoming,/Player/Terry-Smith-Jr-58028,"('tj smith', 77)",primary
+https://247sports.com/college/wyoming,/Player/Larry-Mitchell-58015,"('eric mitchell', 76)",primary
+https://temple.247sports.com,/Player/Cody-Bohler-57128,"('cody booth', 76)",primary
+https://247sports.com/college/north-texas,/Player/Jeremy-Bean-57083,"('jeremy brown', 78)",primary
+https://247sports.com/college/air-force,/Player/Nathan-Badger-58268,"('nathan walker', 77)",primary
+https://247sports.com/college/clemson,/Player/Jon-Richt-55013,"('john wright', 80)",primary
+https://247sports.com/college/alabama,/Player/John-Michael-Boswell-10811,"('michael dejohn', 76)",primary
+https://florida.247sports.com,/Player/Byran-Jones-56739,"('aj jones', 77)",primary
+https://247sports.com/college/southern-mississippi,/Player/Quinton-Pierce-55839,"('quentin pierce', 79)",primary
+https://247sports.com/college/usc,/Player/Daniel-Campbell-24427,"('jordan campbell', 80)",primary
+https://floridastate.247sports.com,/Player/Carlton-Jones-55217,"('ty jones', 77)",primary
+https://247sports.com/college/texas-am,/Player/KJ-Williams-5349,"[('garrick williams', 84), ('cody williams', 84)]",secondary
+https://247sports.com/college/south-carolina,/Player/Reggie-Bowens-54815,"('reginald bowens', 79)",primary
+https://247sports.com/college/arkansas,/Player/Basmine-Jones-54878,"('austin jones', 80)",primary
+https://maryland.247sports.com,/Player/Zach-Kerr-55536,"('zachariah kerr', 78)",primary
+https://247sports.com/college/tennessee,/Player/Carson-Anderson-18500,"('anthony anderson', 77)",primary
+https://247sports.com/college/syracuse,/Player/Michael-Kay-56842,"('michael acchione', 78)",primary
+https://247sports.com/college/baylor,/Player/Mike-Williams-55506,"[('joe williams', 80), ('stacy williams', 76)]",both
+https://247sports.com/college/baylor,/Player/Terrance-Williams-19886,"[('joe williams', 80), ('stacy williams', 77)]",both
+https://247sports.com/college/virginia,/Player/Michael-Price-55276,"('michael rocco', 77)",primary
+https://247sports.com/college/texas-tech,/Player/Brandon-Reid-56767,"('brandon carter', 77)",primary
+https://louisville.247sports.com,/Player/Ryan-Barnes-55153,"('ryan payne', 76)",primary
+https://247sports.com/college/nevada,/Player/Michael-Ball-56143,"('mike ball', 76)",primary
+https://247sports.com/college/nevada,/Player/Mark-Forrest-56156,"('arthur forrest', 77)",primary
+https://247sports.com/college/nevada,/Player/Maurice-Harvey-56160,"('mo harvey', 80)",primary
+https://247sports.com/college/nevada,/Player/Michael-Bethea-56146,"('mike bethea', 80)",primary
+https://247sports.com/college/houston,/Player/Jarvis-Smith-24356,"('ej smith', 77)",primary
+https://247sports.com/college/fresno-state,/Player/Mike-Harris-56182,"[('michael harris', 80), ('moses harris', 78)]",both
+https://247sports.com/college/colorado-state,/Player/Michael-Connor-56600,"('connor smith', 77)",primary
+https://247sports.com/college/wake-forest,/Player/JT-Dixon-55286,"('willie dixon', 77)",primary
+https://247sports.com/college/tcu,/Player/Edward-Patterson-55025,"('cale patterson', 78)",primary
+https://247sports.com/college/utah-state,/Player/Exavier-Johnson-56347,"[('devin johnson', 79), ('spencer johnson', 73)]",both
+https://247sports.com/college/wyoming,/Player/Nick-Williams-55468,"('stuart williams', 76)",primary
+https://247sports.com/college/wyoming,/Player/Justin-Morgan-55457,"('justin martin', 77)",primary
+https://247sports.com/college/northern-illinois,/Player/Jody-VanLaanen-57041,"('jody van laanen', 76)",primary
+https://247sports.com/college/alabama-birmingham,/Player/Danny-White-54896,"('daniel white', 78)",primary
+https://247sports.com/college/navy,/Player/Jonathan-Hill-55934,"('jonathan gazaille', 80)",primary
+https://247sports.com/college/new-mexico,/Player/Tynell-Kirk-55997,"('ty kirk', 78)",primary
+https://florida.247sports.com,/Player/John-Jones-53883,"('aj jones', 78)",primary
+https://auburn.247sports.com,/Player/Michael-McNeil-24781,"('mike mcneil', 80)",primary
+https://247sports.com/college/oklahoma,/Player/Alex-Williams-52968,"('trent williams', 76)",primary
+https://247sports.com/college/miami,/Player/Demarcus-VanDyke-52530,"('demarcus van dyke', 79)",primary
+https://247sports.com/college/miami,/Player/Joseph-Nicolas-52528,"('jojo nicolas', 77)",primary
+https://247sports.com/college/alabama,/Player/Jeremy-Elder-52427,"('jeremy shelley', 77)",primary
+https://247sports.com/college/texas-am,/Player/Daniel-Baker-52310,"('danny baker', 78)",primary
+https://247sports.com/college/southern-mississippi,/Player/Korey-Williams-54411,"('scotty williams', 76)",primary
+https://247sports.com/college/arizona,/Player/Levar-Brown-53771,"('lyle brown', 76)",primary
+https://247sports.com/college/virginia,/Player/Dominique-Joseph-52841,"('dom joseph', 77)",primary
+https://michiganstate.247sports.com,/Player/Chris-Rucker-52918,"[('chris l rucker', 100), ('chris d rucker', 100)]",secondary
+https://michiganstate.247sports.com,/Player/Chris-Rucker-52918,"[('chris l rucker', 100), ('chris d rucker', 100)]",secondary
+https://michiganstate.247sports.com,/Player/Chris-Rucker-52918,"[('chris l rucker', 100), ('chris d rucker', 100)]",secondary
+https://michiganstate.247sports.com,/Player/Michael-Jordan-52897,"('jmichael deane', 79)",primary
+https://247sports.com/college/kansas-state,/Player/Mike-Abana-54494,"('michael abana', 78)",primary
+https://247sports.com/college/iowa-state,/Player/Alex-Sandvig-52820,"('zac sandvig', 78)",primary
+https://247sports.com/college/boise-state,/Player/John-Nisby-54468,"('jp nisby', 78)",primary
+https://247sports.com/college/northwestern,/Player/Michael-Bolden-53320,"('mike bolden', 80)",primary
+https://kansas.247sports.com,/Player/Carmon-Boyd-Anderson-54682,"('kayl anderson', 76)",primary
+https://247sports.com/college/troy,/Player/Stanley-Jones-53371,"('tanner jones', 80)",primary
+https://247sports.com/college/troy,/Player/Fred-Hawkins-53367,"('jeremy hawkins', 77)",primary
+https://247sports.com/college/cincinnati,/Player/Alex-Delisi-54227,"('alex daniels', 78)",primary
+https://247sports.com/college/louisiana-tech,/Player/Tarence-Calais-53311,"('tank calais', 80)",primary
+https://247sports.com/college/san-jose-state,/Player/Mike-Avila-54351,"('michael avila', 78)",primary
+https://247sports.com/college/kent-state,/Player/Michael-Page-54689,"('michael fay', 78)",primary
+https://247sports.com/college/bowling-green,/Player/Gary-Wright-53886,"('bryan wright', 78)",primary
+https://247sports.com/college/new-mexico,/Player/Ivan-Hernandez-53622,"('chris hernandez', 78)",primary
+https://247sports.com/college/tulane,/Player/Andre-Agers-53484,"('andre anderson', 80)",primary
+https://247sports.com/college/middle-tennessee-state,/Player/Deondre-Kyles-53856,"('dd kyles', 77)",primary
+https://247sports.com/college/louisiana,/Player/Justin-Brandon-54015,"('brandon johnson', 76)",primary
+https://247sports.com/college/nevada,/Player/Travionte-Session-53878,"('tray session', 76)",primary
+https://247sports.com/college/utah-state,/Player/Robert-Hill-53997,"('robert marshall', 77)",primary
+https://georgia.247sports.com,/Player/Michael-Lemon-38798,"('michael moore', 77)",primary
+https://247sports.com/college/oklahoma,/Player/Allan-Patrick-42491,"('patrick ohara', 77)",primary
+https://247sports.com/college/texas-am,/Player/Michael-Goodson-39082,"('michael hodges', 76)",primary
+https://auburn.247sports.com,/Player/Bo-Harris-38874,"('josh harris', 80)",primary
+https://247sports.com/college/illinois,/Player/Isiah-Williams-25052,"[('sirod williams', 79), ('juice williams', 73)]",both
+https://247sports.com/college/illinois,/Player/Justin-Sanders-42629,"('justin staples', 79)",primary
+https://nebraska.247sports.com,/Player/Corey-Young-39896,"('dreu young', 76)",primary
+https://247sports.com/college/arizona-state,/Player/Jonathan-Hargis-40143,"('jon hargis', 80)",primary
+https://247sports.com/college/texas-tech,/Player/Brandon-Williams-41581,"('matt williams', 76)",primary
+https://247sports.com/college/duke,/Player/Ifreke-Okpokowuruk-39372,"('ayanga okpokowuruk', 76)",primary
+https://247sports.com/college/missouri,/Player/Mike-Prince-39006,"('munir prince', 78)",primary
+https://247sports.com/college/purdue,/Player/Deon-Williams-39499,"('walter williams', 76)",primary
+https://247sports.com/college/purdue,/Player/Brandon-Erwin-39407,"('brandon king', 80)",primary
+https://247sports.com/college/uconn,/Player/Derek-Rich-39956,"('derek chard', 76)",primary
+https://247sports.com/college/west-virginia,/Player/Robert-Williams-39209,"('reed williams', 79)",primary
+https://247sports.com/college/washington-state,/Player/Preston-Brooks-40248,"('leon brooks', 80)",primary
+https://247sports.com/college/east-carolina,/Player/Fred-Wilson-40524,"('cj wilson', 80)",primary
+https://247sports.com/college/iowa-state,/Player/Drenard-Williams-39659,"('jake williams', 76)",primary
+https://247sports.com/college/baylor,/Player/Tyler-Beatty-39830,"('tyler pratt', 78)",primary
+https://247sports.com/college/louisiana-tech,/Player/Derrick-Williams-40242,"('cruz williams', 76)",primary
+https://247sports.com/college/nevada,/Player/Mike-Gallett-40866,"('mike ball', 76)",primary
+https://247sports.com/college/colorado-state,/Player/Cordell-Macon-41400,"('cory macon', 78)",primary
+https://247sports.com/college/new-mexico,/Player/Michael-Cannon-40403,"('mike cannon', 80)",primary
+https://247sports.com/college/troy,/Player/Jeremy-Jenkins-40287,"('jeremy hawkins', 79)",primary
+https://247sports.com/college/florida-atlantic,/Player/Joseph-Dawson-41125,"('daniel joseph', 77)",primary
+https://247sports.com/college/navy,/Player/Ryan-Campbell-40515,"('kevin campbell', 76)",primary
+https://247sports.com/college/navy,/Player/David-Brown-40512,"('david hong', 76)",primary
+https://247sports.com/college/western-michigan,/Player/Jim-ONeill-41074,"[('james oneill', 82), ('dann oneill', 75)]",secondary
+https://247sports.com/college/hawaii,/Player/Waylon-Lolotai-40783,"('mana lolotai', 77)",primary
+https://247sports.com/college/michigan,/Player/Kevin-Grady-25419,"[('kevin grady', 100), ('kelvin grady', 96)]",secondary
+https://247sports.com/college/michigan,/Player/Kevin-Grady-25419,"[('kevin grady', 100), ('kelvin grady', 96)]",secondary
+https://247sports.com/college/michigan,/Player/Kevin-Grady-25419,"[('kevin grady', 100), ('kelvin grady', 96)]",secondary
+https://247sports.com/college/california,/Player/Desmond-Bishop-43361,"('devin bishop', 77)",primary
+https://247sports.com/college/ole-miss,/Player/Marcus-Green-41852,"[('marshay green', 80), ('marcus temple', 72)]",both
+https://georgia.247sports.com,/Player/Mike-Moore-44182,"('michael moore', 78)",primary
+https://247sports.com/college/purdue,/Player/Michael-Neal-43788,"('mike neal', 76)",primary
+https://louisville.247sports.com,/Player/Stevin-Williams-42086,"('will stein', 80)",primary
+https://louisville.247sports.com,/Player/LD-Scott-42082,"('scott radcliff', 77)",primary
+https://247sports.com/college/iowa-state,/Player/Durrell-Williams-42437,"('jake williams', 76)",primary
+https://kansas.247sports.com,/Player/Marcus-Anderson-42179,"('kayl anderson', 76)",primary
+https://247sports.com/college/washington,/Player/Tim-Williams-42801,"('nate williams', 80)",primary
+https://247sports.com/college/syracuse,/Player/Bruce-Williams-42726,"('mike williams', 76)",primary
+https://michiganstate.247sports.com,/Player/Brandon-Long-42783,"('brandon denson', 77)",primary
+https://indiana.247sports.com,/Player/Neal-Jones-43847,"('donnell jones', 78)",primary
+https://georgiatech.247sports.com,/Player/Jonathan-Garner-42198,"('jonathan malone', 80)",primary
+https://247sports.com/college/uconn,/Player/Courtney-Robinson-42924,"('greg robinson', 76)",primary
+https://247sports.com/college/florida-atlantic,/Player/Kevin-Miller-42159,"('kevin cyrille', 80)",primary
+https://247sports.com/college/kent-state,/Player/Michael-Machen-44425,"('michael fay', 78)",primary
+https://247sports.com/college/cincinnati,/Player/Marshawn-Gilyard-42397,"('mardy gilyard', 76)",primary
+https://247sports.com/college/navy,/Player/Mike-Shaub-42606,"('mike schupp', 76)",primary
+https://247sports.com/college/air-force,/Player/Ryan-Harrison-41816,"('harrison mcwilliams', 76)",primary

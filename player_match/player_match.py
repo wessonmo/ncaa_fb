@@ -1,9 +1,4 @@
 import pandas as pd
-#from bs4 import BeautifulSoup
-#import requests
-#import re
-#import os
-#import calendar
 import time
 from fuzzywuzzy import process
 from fuzzywuzzy import fuzz
@@ -44,48 +39,64 @@ def team_match():
                     team_index.set_value(index,'cfbr_href',href)
             
     return team_index
-
-def match_values(rost_class,match_name):
-    rost_player = rost_class.loc[rost_class['player_name'] == match_name].iloc[0]
-    if pd.isnull(rost_player['player_href']):
-        match_list = [rost_player['team_href'],None,rost_player['season'],rost_player['player_name']]
-    else:
-        match_list = [rost_player['team_href'],rost_player['player_href'],None,None]
-    return match_list
     
 def player_match(min_season):    
     
     current_date = [int(x) for x in time.strftime('%Y %m').split()]
-    recruits_df = recruits_247_scrape(min_season, current_date)
+    recruits_df = recruits_247_scrape(min_season, current_date)            
     rosters_df = player_stats_scrape(min_season,current_date)
-    max_season = min(recruits_df['season'].max(),rosters_df['season'].max())
     
     team_index = team_match()
     
-    player_match = pd.DataFrame(columns = ['cfbr_teamhref','cfbr_playerhref','cfbr_season','cfbr_playername','x247_season','x247_instgroup','x247_playerhref'])
+    potential_match = pd.DataFrame(columns = ['team_href','recruit_href','fuzzymatches','match_type',])
     
-    for season in reversed(range(min_season - 4,max_season + 1)):
-        rct_teams = list(recruits_df.loc[(recruits_df['season'] == season) & (recruits_df['team_href'].isin(team_index['x247_href'])),'team_href'].drop_duplicates())
+    rosters_df['x247_href'] = None
+    rosters_df['x247_rating'] = None
+    
+    for rct_season in reversed(range(int(recruits_df['season'].min()),int(recruits_df['season'].max() + 1))):
+        seasons = range(rct_season,rct_season + 5)
+        rct_teams = list(recruits_df.loc[(recruits_df['season'] == rct_season) & (recruits_df['team_href'].isin(team_index['x247_href'])),'team_href'].drop_duplicates())
         for rct_team in rct_teams:
             cfbr_teamhref = team_index.loc[team_index['x247_href'] == rct_team,'cfbr_href'].iloc[0]
-            rct_class = recruits_df.loc[(recruits_df['season'] == season) & (recruits_df['team_href'] == rct_team)]
-            if len(rct_class) > 0:
-                for threshold in [100,92,80]:
-                    for i in range(1,4):
-                        matched = player_match.loc[(player_match['cfbr_teamhref'] == cfbr_teamhref) & (pd.isnull(player_match['cfbr_playerhref']) == False),]
-                        rost_class = rosters_df.loc[(rosters_df['season'] == season) & (rosters_df['team_href'] == cfbr_teamhref)
-                            & (~rosters_df['player_href'].isin(matched['cfbr_playerhref']))]
-                        if len(rost_class) > 0:
-                            for index, row in rct_class.iterrows():
-                                fuzzymatches = process.extract(row['recruit_name'],rost_class['player_name'],limit = 2)
-                                if fuzzymatches[0][1] == 100:
-                                    if fuzzymatches[1][1] != 100:
-                                        player_match.loc[len(player_match)] = match_values(rost_class,fuzzymatches[0][0])\
-                                                         + [row['season'],row['instgroup'],row['player_href']]
-                                    else:
-                                        'dedupe protocol'
-                                elif fuzzymatches[1][1] > 92:
-                                    'dedupe protocol'
-                                elif fuzzymatches[0][1] > threshold:
-                                    player_match.loc[len(player_match)] = match_values(rost_class,fuzzymatches[0][0])\
-                                                         + [row['season'],row['instgroup'],row['player_href']]
+            for threshold in [100,92,81]:
+                matched = rosters_df.loc[(pd.isnull(rosters_df['x247_href']) == False) & (rosters_df['team_href'] == cfbr_teamhref),['x247_href','player_href']].drop_duplicates()
+                rct_class = recruits_df.loc[(~recruits_df['recruit_href'].isin(matched['x247_href'])) & (recruits_df['season'] == rct_season) & (recruits_df['team_href'] == rct_team) & (recruits_df['team_href'] == rct_team)]
+                rost_class = rosters_df.loc[(~rosters_df['player_href'].isin(matched['player_href'])) & (rosters_df['season'].isin(seasons)) & (rosters_df['team_href'] == cfbr_teamhref),['player_name','player_href']].drop_duplicates()
+                if (len(rost_class) > 0) & (len(rost_class) > 0):
+                    for index,row in rct_class.iterrows():
+                        initial_match = process.extractOne(row['recruit_name'],rost_class['player_name'],scorer = fuzz.token_set_ratio)
+                        if initial_match[1] >= threshold:
+                            initial_href = rost_class.loc[rost_class['player_name'] == initial_match[0],'player_href'].iloc[0]
+                            other_rost = list(rost_class.loc[rost_class['player_href'] != initial_href,'player_name'].drop_duplicates())
+                            other_match = process.extractOne(row['recruit_name'],other_rost,scorer = fuzz.token_set_ratio)
+                            if other_match[1] > (initial_match[1] - 8):
+                                potential_match.loc[len(potential_match)] = [rct_team,row['recruit_href'],[initial_match,other_match],'secondary']
+                            else:
+                                rosters_df.loc[(rosters_df['player_name'] == initial_match[0]) & (rosters_df['season'].isin(seasons)) & (rosters_df['team_href'] == cfbr_teamhref),'x247_href'] = row['recruit_href']
+                                rosters_df.loc[(rosters_df['player_name'] == initial_match[0]) & (rosters_df['season'].isin(seasons)) & (rosters_df['team_href'] == cfbr_teamhref),'x247_rating'] = row['rating']
+                        elif (threshold == 81) & (initial_match[1] > 78):
+                            initial_href = rost_class.loc[rost_class['player_name'] == initial_match[0],'player_href'].iloc[0]
+                            other_rost = list(rost_class.loc[rost_class['player_href'] != initial_href,'player_name'].drop_duplicates())
+                            other_match = process.extractOne(row['recruit_name'],other_rost,scorer = fuzz.token_set_ratio)
+                            if other_match[1] < (initial_match[1] - 8):
+                                rct_pos = row['pos_group']
+                                initial_pos = rosters_df.loc[(rosters_df['season'].isin(seasons)) & (rosters_df['team_href'] == cfbr_teamhref) & (rosters_df['player_name'] == initial_match[0]),'pos_group'].iloc[0]
+                                if rct_pos == initial_pos:
+                                    rosters_df.loc[(rosters_df['player_name'] == initial_match[0]) & (rosters_df['season'].isin(seasons)) & (rosters_df['team_href'] == cfbr_teamhref),'x247_href'] = row['recruit_href']
+                                    rosters_df.loc[(rosters_df['player_name'] == initial_match[0]) & (rosters_df['season'].isin(seasons)) & (rosters_df['team_href'] == cfbr_teamhref),'x247_rating'] = row['rating']
+                                    potential_match.loc[len(potential_match)] = [rct_team,row['recruit_href'],initial_match,'pos_match']
+                                else:
+                                    potential_match.loc[len(potential_match)] = [rct_team,row['recruit_href'],initial_match,'primary']
+                            else:
+                                potential_match.loc[len(potential_match)] = [rct_team,row['recruit_href'],[initial_match,other_match],'both']
+                        elif (threshold == 81) & (initial_match[1] > 75):
+                            potential_match.loc[len(potential_match)] = [rct_team,row['recruit_href'],initial_match,'primary']
+            
+            print(seasons[0],rct_team)
+                                               
+    rosters_df['x247_rating'] = rosters_df['x247_rating'].fillna(0)
+    rosters_df.to_csv(match_folder_path + 'matched_stats.csv', index = False)
+    
+    potential_match = potential_match.loc[~potential_match['recruit_href'].isin(rosters_df['x247_href'])]
+    potential_match.to_csv(match_folder_path + 'potential_match.csv', index = False)
+player_match(2009)
