@@ -97,9 +97,11 @@ def recruits_247_scrape(min_season, current_date):
     
     for season in range(min_season - 4, latest_class + 1):
         for instgroup in ['HighSchool','JuniorCollege','PrepSchool']:
-            max_page = page_check_df.loc[(page_check_df['season'] == season) & (page_check_df['instgroup'] == instgroup),'max_page'].iloc[0]
+            max_page = page_check_df.loc[(page_check_df['season'] == season)
+                & (page_check_df['instgroup'] == instgroup),'max_page'].iloc[0]
             for page in range(1,int(max_page) + 1):
-                if page not in list(recruits_df.loc[(recruits_df['season'] == season) & (recruits_df['instgroup'] == instgroup),'page'].drop_duplicates()):
+                if page not in list(recruits_df.loc[(recruits_df['season'] == season)
+                                    & (recruits_df['instgroup'] == instgroup),'page'].drop_duplicates()):
                     if instgroup == 'PrepSchool':
                         url = 'https://247sports.com/Season/' + str(season) + '-Football/CompositeRecruitRankings?InstitutionGroup=PrepSchool'
                     else:
