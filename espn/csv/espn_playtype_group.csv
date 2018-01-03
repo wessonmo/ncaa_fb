@@ -1,0 +1,35 @@
+playtype,playtype_group
+Blocked Field Goal,field goal
+Blocked Field Goal Touchdown,field goal
+Field Goal Good,field goal
+Field Goal Missed,field goal
+Missed Field Goal Return,field goal
+Missed Field Goal Return Touchdown,field goal
+Kickoff,kickoff
+Kickoff Return (Offense),kickoff
+Kickoff Return Touchdown,kickoff
+Blocked Punt,punt
+Blocked Punt Touchdown,punt
+Punt,punt
+Punt Return Touchdown,punt
+Interception,pass
+Interception Return Touchdown,pass
+Pass,pass
+Pass Completion,pass
+Pass Incompletion,pass
+Pass Interception,pass
+Pass Interception Return,pass
+Pass Reception,pass
+Passing Touchdown,pass
+Sack,pass
+Rush,rush
+Rushing Touchdown,rush
+2pt Conversion,extra point
+Defensive 2pt Conversion,extra point
+Offensive 1pt Safety,extra point
+Extra Point Good,extra point
+Extra Point Missed,extra point
+End of Game,end half
+End of Half,end half
+Penalty,penalty
+Timeout,timeout
