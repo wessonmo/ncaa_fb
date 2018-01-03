@@ -1,8 +1,9 @@
 library(lme4)
 
 match_results = read.csv('espn\\csv\\espn_game_info.csv')
+team_info = read.csv('espn\\csv\\espn_team_info.csv')
 
-reg_season = match_results[(match_results$season_type == 2) & (match_results$season != 2017),]
+reg_season = match_results[(match_results$season_type == 2),]
 reg_season$homeid = paste0(reg_season$season,'_',reg_season$homeid)
 reg_season$awayid = paste0(reg_season$season,'_',reg_season$awayid)
 reg_season$season = paste0('year_',reg_season$season)
@@ -35,7 +36,18 @@ anova(model)
 # max(relgrad)
 
 fixed = fixef(model)
-rand = ranef(model)
+rand = ranef(model, condVar = T)
 
-write.csv(rand$off_id,file = 'off_est.csv')
-write.csv(rand$def_id,file = 'def_est.csv')
+off = rand$off_id
+off$var = attr(rand$off_id, "postVar")[1, 1, ]
+def = rand$def_id
+def$var = attr(rand$def_id, "postVar")[1, 1, ]
+
+out = data.frame(cbind(off,def))
+colnames(out) = c('off_int','off_var','def_int','def_var')
+out$season = sapply(rownames(out), function(x) as.numeric(substr(x,1,4)))
+out$id = sapply(rownames(out), function(x) as.numeric(substr(x,6,9)))
+
+out = merge(out,team_info[,c('espn_teamid','team_schoolname')], by.x = 'id', by.y = 'espn_teamid',all.x = T)
+
+write.csv(out,file = 'model_output.csv')
