@@ -8,6 +8,8 @@ import csv
 
 pbp_folder = 'E:\\college football\\pbp'
 
+#playtype_df = pd.read_csv('espn\\csv\\espn_playtype_group.csv', header = 0)
+
 try:
     pbp_init = list(pd.read_csv(pbp_folder + '\\csv\\' + 'espn_pbp.csv', header = 0)['gameid'].drop_duplicates())
     headers = False
@@ -31,7 +33,7 @@ for season in reversed(os.listdir(pbp_folder)):
             if gameid in pbp_init:
                 continue
             
-            play_info = pd.DataFrame(columns = ['gameid','driveid','playid','period','clock','offid','offfield','down','dist','yrd2end','playtype','text','endid','end_yrd2end','homescore','awayscore','hometor','awaytor'])
+            play_info = pd.DataFrame(columns = ['gameid','driveid','playid','period','clock','offid','offfield','down','dist','yrd2end','playtype','text','endid','end_yrd2end','fumble','int','off_pen','def_pen','homescore','awayscore','hometor','awaytor'])
             
             for team in data['teams']:
                 if team['homeAway'] == 'home':
@@ -59,7 +61,6 @@ for season in reversed(os.listdir(pbp_folder)):
                     driveid = int(drive['id'])
     
                     for play in drive['plays']:
-#                        try:
                         try:
                             play['type']
                         except:
@@ -68,13 +69,13 @@ for season in reversed(os.listdir(pbp_folder)):
                         if play['type']['text'] == 'End Period':
                             continue
                         try:
-                            if 'Timeout' in play['type']['text'] == 'Timeout':
-                                to_name = re.compile('(?<=Timeout ).*(?=\,)').search(play['text']).group(0).lower()
+                            if play['type']['text'] == 'Timeout':
+                                to_name = re.compile('(?<=Timeout ).*(?=\,)', re.I).search(play['text']).group(0).lower()
                                 if to_name not in (home_name_list + away_name_list):
                                     to_team = process.extractOne(to_name,(home_name_list + away_name_list), scorer = fuzz.token_sort_ratio)[0]
                                 else:
                                     to_team = to_name
-                                if to_name in home_name_list:
+                                if to_team in home_name_list:
                                     home_tor -= 1
                                 else:
                                     away_tor -= 1
@@ -90,17 +91,44 @@ for season in reversed(os.listdir(pbp_folder)):
                         play_list.append(int(clock.split(':')[0])*60 + int(clock.split(':')[1]))#clock (in seconds)
                         play_list.append(play['start']['team']['id'])#start_id
                         if data['competitions'][0]['neutralSite'] == True:
-                            off_field = 'neutral'
+                            off_field = 'neutral' + '_home' if play['start']['team']['id'] == home else '_away'
                         else:
                             off_field = 'home' if play['start']['team']['id'] == home else 'away'
                         play_list.append(off_field)#off_field
                         play_list.append(play['start']['down'])#down
                         play_list.append(play['start']['distance'])#dist
                         play_list.append(play['start']['yardsToEndzone'])#yrds to endzone
+                        
+#                        if row.playtype == 'Safety':
+#                            try:
+#                                if re.compile(' pass | sack', re.I).search(row.text):
+#                                    pbp.set_value(index,'playtype_group','pass')
+#                                elif re.compile('kickoff', re.I).search(row.text):
+#                                    pbp.set_value(index,'playtype_group','kickoff')
+#                                elif re.compile(' punt', re.I).search(row.text):
+#                                    pbp.set_value(index,'playtype_group','punt')
+#                                elif (re.compile(' penalty', re.I).search(row.text)) and (not re.compile('decline').search(row.text)):
+#                                    pbp.set_value(index,'playtype_group','penalty')
+#                                else:
+#                                    pbp.set_value(index,'playtype_group','safety')
+#                            except:
+#                                pbp.set_value(index,'playtype_group','safety')
+#                        elif 'Fumble' in row.playtype:
+#                            try:
+#                                if re.compile(' pass | sack', re.I).search(row.text):
+#                                    pbp.set_value(index,'playtype_group','pass')
+#                                elif re.compile('kickoff', re.I).search(row.text):
+#                                    pbp.set_value(index,'playtype_group','kickoff')
+#                                else:
+#                                    pbp.set_value(index,'playtype_group','fumble')
+#                            except:
+#                                pbp.set_value(index,'playtype_group','fumble')
+#                            pbp.set_value(index,'fumble',1)                        
+                        
                         play_list.append(play['type']['text'])#playtype
                         
                         try:
-                            play_list.append(play['text'])#text
+                            play_list.append(re.sub(r'[^\x00-\x7F]+','',play['text']))#text
                         except:
                             play_list.append(None)#text
                             
@@ -110,14 +138,38 @@ for season in reversed(os.listdir(pbp_folder)):
                             play_list.append(None)#end_id
                             
                         play_list.append(play['end']['yardsToEndzone'])#yrds to endzone
+                        
+                        try:
+                            play_list.append(1 if ('fumble' in (play['type']['text'].lower() + ' ' + play['text'].lower())) else 0)
+                        except:
+                            play_list.append(1 if ('fumble' in play['type']['text'].lower()) else 0)
+                            
+                        try:
+                            play_list.append(1 if ('intercept' in (play['type']['text'].lower() + ' ' + play['text'].lower())) else 0)
+                        except:
+                            play_list.append(1 if ('intercept' in play['type']['text'].lower()) else 0)
+
+#                        fumble, int placeholder                       
+                        
                         play_list.append(play['homeScore'])
                         play_list.append(play['awayScore'])
                         play_list.append(home_tor)#home timeouts
                         play_list.append(away_tor)#away timeouts
+                        try:
+                            if re.compile('(?<=Timeout ).*(?=\,)', re.I).search(play['text']):
+                                to_name = re.compile('(?<=Timeout ).*(?=\,)', re.I).search(play['text']).group(0).lower()
+                                if to_name not in (home_name_list + away_name_list):
+                                    to_team = process.extractOne(to_name,(home_name_list + away_name_list), scorer = fuzz.token_sort_ratio)[0]
+                                else:
+                                    to_team = to_name
+                                if to_team in home_name_list:
+                                    home_tor -= 1
+                                else:
+                                    away_tor -= 1
+                        except:
+                            pass
+                                
                         play_info.loc[len(play_info)] = play_list
-#                        except Exception as e:
-#                            error = str(e)
-#                            raise Exception
                         
                 with open(pbp_folder + '\\csv\\' + 'espn_pbp.csv', 'ab') as csvfile:
                     play_info.to_csv(csvfile, index = False, header = headers)

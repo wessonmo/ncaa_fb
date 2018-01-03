@@ -11,8 +11,29 @@ pbp_folder = 'E:\\college football\\pbp'
 pbp = pd.read_csv(pbp_folder + '\\csv\\' + 'espn_pbp.csv', header = 0)
 playtype_df = pd.read_csv('espn\\csv\\espn_playtype_group.csv', header = 0)
 pbp = pd.merge(pbp,playtype_df,how = 'left', on = 'playtype')
-pbp['fumble'] = 0
-#int stuff
+pbp['fumble'] = pbp.text.apply(lambda x: 1 if re.compile('fumble', re.I).search(x) else 0)
+pbp['interception'] = pbp.playtype.apply(lambda x: 1 if 'Interception' in x else 0)
+
+for index, row in pbp.iterrows():
+    if not pd.isnull(row.text):
+        if len(re.findall('penalty',row.text.lower())) > 1:
+            print(row.text)
+            raise Exception
+        prior, post = None, None
+        if re.compile('penalty', re.I).search(row.text):
+            pen_index = row.text.lower().index('penalty')
+            
+            if pen_index not in [0,1]:
+                if re.compile('[A-Z]').search(row.text[pen_index - 2]):
+                    prior = re.compile('[A-Z]+(( )*[A-Z])*(?= (penalty|PENALTY|Penalty))').search(row.text).group(0)
+            if pen_index not in [len(row.text) - 9, len(row.text) - 8]:
+                if re.compile('[A-Z]').search(row.text[pen_index + 2]):
+                    post = re.compile('(?<=(penalty|PENALTY|Penalty) )[A-Z]+(( )*[A-Z])*').search(row.text).group(0)
+                    
+            if (prior != None) and (post != None):
+                prior_match = process.extractOne()
+                post_match = process.extractOne()
+        
 
 for index, row in pbp.loc[pd.isnull(pbp.playtype_group)].iterrows():
     if row.playtype == 'Safety':
