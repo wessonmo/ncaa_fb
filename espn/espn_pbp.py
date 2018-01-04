@@ -33,7 +33,7 @@ for season in reversed(os.listdir(pbp_folder)):
             if gameid in pbp_init:
                 continue
             
-            play_info = pd.DataFrame(columns = ['gameid','driveid','playid','period','clock','offid','offfield','down','dist','yrd2end','playtype','text','endid','end_yrd2end','fumble','int','homescore','awayscore','hometor','awaytor'])
+            play_info = pd.DataFrame(columns = ['gameid','driveid','playid','period','clock','offid','offfield','down','dist','yrd2end','playtype','scoringtype','text','endid','end_yrd2end','fumble','int','homescore','awayscore','hometor','awaytor'])
             
             for team in data['teams']:
                 if team['homeAway'] == 'home':
@@ -67,7 +67,7 @@ for season in reversed(os.listdir(pbp_folder)):
                     
                     if play['type']['text'] == 'End Period':
                         continue
-#                    try:
+
                     if play['type']['text'] == 'Timeout':
                         try:
                             to_name = re.compile('(?<=Timeout ).*(?=\,)', re.I).search(play['text']).group(0).lower()
@@ -87,25 +87,21 @@ for season in reversed(os.listdir(pbp_folder)):
                         continue
                     elif play['type']['text'] in ['Coin Toss','Timeout','End of Half','End of Game']:
                         continue
-#                    except:
-#                        pass
+
                     play_list = [gameid,driveid]
                     play_list.append(int(play['id']))#play_id
                     play_list.append(int(play['period']['number']))#period
                     clock = play['clock']['displayValue']
                     play_list.append(int(clock.split(':')[0])*60 + int(clock.split(':')[1]))#clock (in seconds)
                     play_list.append(play['start']['team']['id'])#start_id
-                    if data['competitions'][0]['neutralSite'] == True:
-                        off_field = 'neutral' + '_home' if play['start']['team']['id'] == home else '_away'
-                    else:
-                        off_field = 'home' if play['start']['team']['id'] == home else 'away'
+                    off_field = ('neutral_' if data['competitions'][0]['neutralSite'] == True else '')\
+                        + ('home' if play['start']['team']['id'] == home else 'away')
                     play_list.append(off_field)#off_field
                     play_list.append(play['start']['down'])#down
                     play_list.append(play['start']['distance'])#dist
                     play_list.append(play['start']['yardsToEndzone'])#yrds to endzone
                     
                     if play['type']['text'] == 'Safety':
-#                        try:
                         if re.compile(' pass | sack', re.I).search(play['text']):
                             play_type = 'pass'
                         elif re.compile('kickoff', re.I).search(play['text']):
@@ -114,22 +110,22 @@ for season in reversed(os.listdir(pbp_folder)):
                             play_type = 'punt'
                         else:
                             play_type = 'safety'
-#                        except:
-#                            play_type = 'safety'
                     elif 'Fumble' in play['type']['text']:
-#                        try:
                         if re.compile(' pass | sack', re.I).search(play['text']):
                             play_type = 'pass'
                         elif re.compile('kickoff', re.I).search(play['text']):
                             play_type = 'kickoff'
                         else:
                             play_type = 'fumble'
-#                        except:
-#                            play_type = 'fumble'
                     else:
                         play_type = playtype_df.loc[playtype_df.playtype == play['type']['text'],'playtype_group'].iloc[0]
                     
                     play_list.append(play_type)#playtype
+                    
+                    try:
+                        play_list.append(play['scoringType']['name'])#scoringtype
+                    except:
+                        play_list.append(None)
                     
                     try:
                         play_list.append(re.sub(r'[^\x00-\x7F]+','',play['text']))#text
@@ -180,12 +176,3 @@ for season in reversed(os.listdir(pbp_folder)):
                 play_info.to_csv(csvfile, index = False, header = headers)
             
             headers = False
-#            except Exception as e:
-#                error = str(e)
-#                with open(pbp_folder + '\\csv\\' + 'espn_pbp.csv', 'ab') as csvfile:
-#                    csvwriter = csv.writer(csvfile)
-#                    if headers == True:
-#                        csvwriter.writerow(['gameid','driveid','playid','period','clock','offid','offfield','down','dist','yrdline','playtype','yardage','text','endid','homescore','awayscore','hometor','awaytor'])
-#                    csvwriter.writerow([gameid,driveid,play['id']] + [None]*8 + [error] + [None]*6)
-#                
-#                headers = False
