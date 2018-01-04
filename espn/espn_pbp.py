@@ -157,19 +157,22 @@ for season in reversed(os.listdir(pbp_folder)):
                     play_list.append(play['awayScore'])
                     play_list.append(home_tor)#home timeouts
                     play_list.append(away_tor)#away timeouts
-#                    try:
-                    if re.compile('(?<=Timeout ).*(?=\,)', re.I).search(play['text']):
-                        to_name = re.compile('(?<=Timeout ).*(?=\,)', re.I).search(play['text']).group(0).lower()
-                        if to_name not in (home_name_list + away_name_list):
-                            to_team = process.extractOne(to_name,(home_name_list + away_name_list), scorer = fuzz.token_sort_ratio)[0]
+                    try:
+                        if re.compile('(?<=Timeout ).*(?=\,)', re.I).search(play['text']):
+                            to_name = re.compile('(?<=Timeout ).*(?=\,)', re.I).search(play['text']).group(0).lower()
+                            if to_name not in (home_name_list + away_name_list):
+                                to_team = process.extractOne(to_name,(home_name_list + away_name_list), scorer = fuzz.token_sort_ratio)[0]
+                            else:
+                                to_team = to_name
+                            if to_team in home_name_list:
+                                home_tor -= 1
+                            else:
+                                away_tor -= 1
+                    except KeyError as e:
+                        if str(e) != "'text'":
+                            raise e
                         else:
-                            to_team = to_name
-                        if to_team in home_name_list:
-                            home_tor -= 1
-                        else:
-                            away_tor -= 1
-#                    except:
-#                        pass
+                            pass
                             
                     play_info.loc[len(play_info)] = play_list
                     
