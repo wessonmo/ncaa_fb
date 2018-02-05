@@ -29,11 +29,11 @@ for season in reversed(os.listdir(pbp_folder)):
             with open(pbp_folder + '\\' + season + '\\' + week + '\\full\\' + file_) as json_data:                
                 data = ujson.load(json_data)
             
-            gameid = int(data['id'])
-            if gameid in pbp_init:
+            gameid = str(data['id'])
+            if int(gameid) in pbp_init:
                 continue
             
-            play_info = pd.DataFrame(columns = ['gameid','driveid','playid','period','clock','offid','offfield','down','dist','yrd2end','playtype','scoringtype','text','endid','end_yrd2end','fumble','int','homescore','awayscore','hometor','awaytor'])
+            play_info = pd.DataFrame(columns = ['gameid','driveid','playid','period','clock','offid','offfield','down','dist','yrd2end','playtype','inferred','scoringtype','text','endid','end_yrd2end','fumble','int','homescore','awayscore','hometor','awaytor'])
             
             for team in data['teams']:
                 if team['homeAway'] == 'home':
@@ -57,7 +57,7 @@ for season in reversed(os.listdir(pbp_folder)):
                         home_tor, away_tor = 3, 3
                     prev_qtr = drive['start']['period']['number']
 
-                driveid = int(drive['id'])
+                driveid = str(drive['id'])
 
                 for play in drive['plays']:
                     try:
@@ -85,11 +85,11 @@ for season in reversed(os.listdir(pbp_folder)):
                         else:
                             away_tor -= 1
                         continue
-                    elif play['type']['text'] in ['Coin Toss','Timeout','End of Half','End of Game']:
+                    elif play['type']['text'] in ['Coin Toss','Timeout']:
                         continue
 
                     play_list = [gameid,driveid]
-                    play_list.append(int(play['id']))#play_id
+                    play_list.append(str(play['id']))#play_id
                     play_list.append(int(play['period']['number']))#period
                     clock = play['clock']['displayValue']
                     play_list.append(int(clock.split(':')[0])*60 + int(clock.split(':')[1]))#clock (in seconds)
@@ -101,9 +101,22 @@ for season in reversed(os.listdir(pbp_folder)):
                     play_list.append(play['start']['distance'])#dist
                     play_list.append(play['start']['yardsToEndzone'])#yrds to endzone
                     
-                    if play['type']['text'] == 'Safety':
+                    inferred = 0
+                    if play['type']['text'] == 'Penalty':
                         if re.compile(' pass | sack', re.I).search(play['text']):
                             play_type = 'pass'
+                            inferred = 1
+                        elif (re.compile('kickoff', re.I).search(play['text']))\
+                                or ((play['start']['down'] == 1) and (play['start']['distance'] == 65)):
+                            play_type = 'kickoff'
+                        elif re.compile(' punt', re.I).search(play['text']):
+                            play_type = 'punt'
+                        else:
+                            play_type = 'penalty'
+                    elif play['type']['text'] == 'Safety':
+                        if re.compile(' pass | sack', re.I).search(play['text']):
+                            play_type = 'pass'
+                            inferred = 1
                         elif re.compile('kickoff', re.I).search(play['text']):
                             play_type = 'kickoff'
                         elif re.compile(' punt', re.I).search(play['text']):
@@ -113,6 +126,7 @@ for season in reversed(os.listdir(pbp_folder)):
                     elif 'Fumble' in play['type']['text']:
                         if re.compile(' pass | sack', re.I).search(play['text']):
                             play_type = 'pass'
+                            inferred = 1
                         elif re.compile('kickoff', re.I).search(play['text']):
                             play_type = 'kickoff'
                         else:
@@ -121,6 +135,7 @@ for season in reversed(os.listdir(pbp_folder)):
                         play_type = playtype_df.loc[playtype_df.playtype == play['type']['text'],'playtype_group'].iloc[0]
                     
                     play_list.append(play_type)#playtype
+                    play_list.append(inferred)#inferred
                     
                     try:
                         play_list.append(play['scoringType']['name'])#scoringtype
