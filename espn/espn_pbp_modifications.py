@@ -1,44 +1,34 @@
-import os
 import pandas as pd
 from fuzzywuzzy import process
 from fuzzywuzzy import fuzz
-import re
-import ujson
-import csv
+import numpy as np
 
 pbp_folder = 'E:\\college football\\pbp'
 
 pbp = pd.read_csv(pbp_folder + '\\csv\\' + 'espn_pbp.csv', header = 0)
+#pbp.drop_duplicates().reset_index(drop = True).to_csv(pbp_folder + '\\csv\\' + 'espn_pbp.csv', index = False)
 #playtype_df = pd.read_csv('espn\\csv\\espn_playtype_group.csv', header = 0)
 #pbp = pd.merge(pbp,playtype_df,how = 'left', on = 'playtype')
+pbp = pbp.drop_duplicates(pbp.columns.difference(['playid'])).reset_index(drop = True)
 
-drives = list(pbp.driveid.drop_duplicates())
-for drive in drives:
-    plays = pbp.loc[pbp.driveid == drive]
+success = pbp.loc[~pbp.playtype.isin(['kickoff','extra point'])]
+success.loc[:,'sub_driveid'] = (success.down == 1).cumsum()
 
+final_play = success.groupby('sub_driveid', as_index = False).last()
+final_play_skip = list(final_play.loc[(final_play.down != 4) & ((final_play.offid != final_play.endid) | final_play.playtype.isin(['punt','field goal']) | (final_play.scoringtype == 'safety')),'sub_driveid'].drop_duplicates())
 
-pbp.loc[(pbp.playtype == 'pass') & (pbp.fumble == 1)].head()
+first_play = success.groupby('sub_driveid', as_index = False).first()
+first_play_skip = list(first_play.loc[first_play.period.isin([2,4]) & (first_play.clock <= 600) & (first_play.yrd2end > 20),'sub_driveid'].drop_duplicates())
 
-pbp.playtype.value_counts()
-pbp.loc[pbp.fumble == 1].playtype.value_counts()
-float(499617)/float(540668)
-float(5877)/float(6832)
+other_skip = list(success.loc[(success.dist < 0) & (success.down != 4),'sub_driveid'].drop_duplicates())
 
-for index, row in pbp.iterrows():
-    drive_plays = pbp.loc[pbp.driveid == row.driveid]
-    if len(drive_plays) > 1:
-        for index2, row2 in drive_plays.iterrows():
-            fourth_down = drive_plays.loc[(drive_plays.playid > row2.playid) & (drive_plays.down == 4),'playid'].min()
-            goal_to_go = 
-            drive_plays.loc[(drive_plays.playid > row2.playid) & ()]
-            break
-    else:
+skip_ids = set(first_play_skip + final_play_skip + other_skip)
+                          
+final_play_succ = final_play.loc[~final_play.sub_driveid.isin(skip_ids)]
+final_play_succ['success'] = np.where(final_play_succ.down != 4, 1, 0)
+
+success = pd.merge(success.loc[~success.sub_driveid.isin(skip_ids)], final_play_succ[['sub_driveid','success']], how = 'left', on = 'sub_driveid')
+#success[['driveid','sub_driveid','down','playtype','text','success']].head(15)
 
 
-pbp.loc[(pbp.yrdline < 5) & pbp.playtype.isin(['Pass','Pass Completion','Pass Incompletion','Pass Reception','Rush','Rushing Touchdown','Passing Touchdown'])].head()
-
-safe_words = re.compile('sack|pass|kickoff')
-#for index, row in pbp.loc[pbp.playtype.isin(['Fumble Recovery (Opponent)','Fumble Recovery (Own)','Fumble Return Touchdown'])].head(15).iterrows():
-for index, row in pbp.loc[pbp.playtype.isin(['Fumble Recovery (Opponent)','Fumble Recovery (Own)','Fumble Return Touchdown'])].iterrows():
-    if re.compile('punt').search(row.text):
-        print(row.text)
+success.loc[success.down.isin(range(1,4))].groupby(['down','dist'], as_index = False)['success'].agg(['count', np.mean, np.std]).reset_index().to_csv('play_success.csv')
