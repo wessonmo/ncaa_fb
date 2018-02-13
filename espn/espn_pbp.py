@@ -33,7 +33,7 @@ for season in reversed(os.listdir(pbp_folder)):
             if int(gameid) in pbp_init:
                 continue
             
-            play_info = pd.DataFrame(columns = ['gameid','driveid','playid','period','clock','offid','defid','offfield','down','dist','yrd2end','playtype','inferred','scoringtype','text','endid','end_yrd2end','fumble','int','homescore','awayscore','hometor','awaytor'])
+            play_info = pd.DataFrame(columns = ['gameid','driveid','playid','period','clock','offid','defid','offfield','down','dist','yrd2end','playtype','inferred','scoringtype','text','end_id','end_down','end_dist','end_yrd2end','fumble','int','homescore','awayscore','hometor','awaytor'])
             
             for team in data['teams']:
                 if team['homeAway'] == 'home':
@@ -152,6 +152,13 @@ for season in reversed(os.listdir(pbp_folder)):
                         play_list.append(play['end']['team']['id'])#end_id
                     except:
                         play_list.append(None)#end_id
+                        
+                    try:
+                        play_list.append(play['end']['down'])#end_down
+                        play_list.append(play['end']['distance'])#end_dist
+                    except:
+                        play_list.append(None)#end_down
+                        play_list.append(None)#end_dist
                         
                     play_list.append(play['end']['yardsToEndzone'])#yrds to endzone
                     
