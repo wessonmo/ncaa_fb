@@ -33,7 +33,7 @@ for season in reversed(os.listdir(pbp_folder)):
             if int(gameid) in pbp_init:
                 continue
             
-            play_info = pd.DataFrame(columns = ['gameid','driveid','playid','period','clock','offid','offfield','down','dist','yrd2end','playtype','inferred','scoringtype','text','endid','end_yrd2end','fumble','int','homescore','awayscore','hometor','awaytor'])
+            play_info = pd.DataFrame(columns = ['gameid','driveid','playid','period','clock','offid','defid','offfield','down','dist','yrd2end','playtype','inferred','scoringtype','text','endid','end_yrd2end','fumble','int','homescore','awayscore','hometor','awaytor'])
             
             for team in data['teams']:
                 if team['homeAway'] == 'home':
@@ -94,6 +94,7 @@ for season in reversed(os.listdir(pbp_folder)):
                     clock = play['clock']['displayValue']
                     play_list.append(int(clock.split(':')[0])*60 + int(clock.split(':')[1]))#clock (in seconds)
                     play_list.append(play['start']['team']['id'])#start_id
+                    play_list.append(away if home == play['start']['team']['id'] else home)#def_id
                     off_field = ('neutral_' if data['competitions'][0]['neutralSite'] == True else '')\
                         + ('home' if play['start']['team']['id'] == home else 'away')
                     play_list.append(off_field)#off_field
